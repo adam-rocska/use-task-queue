@@ -11,7 +11,7 @@ export function nullTaskQueue<I, O>(): TaskQueueHook<I, O> {
   };
 }
 
-export function isNullTaskQueue<I,O>(queue: TaskQueueHook<I,O>): boolean {
+export function isNullTaskQueue<I, O>(queue: TaskQueueHook<I, O>): boolean {
   if (queue.input !== nullQueue) return false;
   if (queue.process !== nullQueue) return false;
   if (queue.output !== nullQueue) return false;
@@ -21,5 +21,5 @@ export function isNullTaskQueue<I,O>(queue: TaskQueueHook<I,O>): boolean {
   return true;
 }
 
-const noop: (input: any) => void = ()=> {};
+const noop: (input: any) => void = () => {};
 const nullQueue: readonly any[] = Object.freeze([]);
