@@ -5,15 +5,16 @@ import {pseudoCancellable} from 'real-cancellable-promise';
 describe('TaskProcess', () => {
   describe('isTaskProcess()', () => {
     it('should return true if the value is a TaskProcess', () => {
-      expect(
-        isTaskProcess({
-          input: 123,
-          task: pseudoCancellable(Promise.resolve(555)),
-        })
-      ).toBe(true);
+      buildStubRecords({
+        input: [123],
+        task: [
+          pseudoCancellable(Promise.resolve([555])),
+          new Promise(resolve => resolve([555])),
+        ],
+      }).forEach(process => expect(isTaskProcess(process)).toBe(true));
     });
 
-    it('Should fail with invalid input: %p', () => {
+    it('Should fail with invalid input.', () => {
       [
         ...buildStubRecords({
           input: [1, true, false, null, undefined, {}, [], () => {}],

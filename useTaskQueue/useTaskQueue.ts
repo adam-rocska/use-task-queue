@@ -66,33 +66,27 @@ export default function useTaskQueue<I, O>(
       if (!Array.isArray(input)) input = [input];
       const inputs: Array<I> = [];
       const errors: Array<TaskError<I, O>> = [];
-      input.forEach(input => {
-        const error = getPreconditionFailure(input);
-        if (error) return errors.push(error);
-        inputs.push(input);
-      });
+      for (const i of input) {
+        const error = getPreconditionFailure(i);
+        error ? errors.push(error) : inputs.push(i);
+      }
       pushTo(setError, errors);
       pushTo(setInput, inputs);
     },
     [getPreconditionFailure]
   );
   const kill = useCallback<TaskQueueHook<I, O>['kill']>(process => {
-    if (!processing.includes(process))
-      return console.warn(
-        "Process doesn't belong to this queue.",
-        name,
-        process
-      );
+    if (!processing.includes(process)) return;
+    if (process.task instanceof Promise) return;
     removeFrom(setProcessing, process);
-    process.task.cancel();
   }, []);
 
   useEffect(() => {
     const popped = popFrom(setInput, input);
-    if (!popped) return console.info('No task input.', name);
+    if (!popped) return;
     const taskInput = popped as I;
 
-    let results: O[] | CancellablePromise<O[]>;
+    let results: ReturnType<typeof task>;
     try {
       results = task(taskInput);
     } catch (error) {
@@ -103,16 +97,17 @@ export default function useTaskQueue<I, O>(
     const reduceResults = (results: O[]) => {
       const errors: Array<TaskError<I, O>> = [];
       const outputs: Array<TaskOutput<I, O>> = [];
-      results.forEach(result => {
+      for (const result of results) {
         const error = getPostconditionFailure(taskInput, result);
-        if (error) return errors.push(error);
-        outputs.push({input: taskInput, output: result});
-      });
+        error
+          ? errors.push(error)
+          : outputs.push({input: taskInput, output: result});
+      }
       pushTo(setError, errors);
       pushTo(setOutput, outputs);
     };
 
-    if (results instanceof CancellablePromise) {
+    if (results instanceof CancellablePromise || results instanceof Promise) {
       const process: TaskProcess<I, O> = {input: taskInput, task: results};
       pushTo(setProcessing, [process]);
       results
