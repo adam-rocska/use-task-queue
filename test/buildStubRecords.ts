@@ -8,12 +8,12 @@ export default function buildStubRecords(
   ...args: Array<any>
 ): Array<Record<any, any>> {
   if (args.every(v => typeof v === 'object')) {
-    return args
-      .map(o => combine([{}], Object.entries(o)))
-      .reduce((a, b) => a.concat(b), []);
+    const records = [];
+    for (const shape of args) {
+      records.push(...combine([{}], Object.entries(shape)));
+    }
+    return records;
   }
-  if (!args.every(v => typeof v === 'function'))
-    throw 'Variation factories expected.;';
 
   return combine(
     [{}],
@@ -28,9 +28,10 @@ function combine(
   if (variations.length === 0) return records;
   const [field, values] = variations[0]!;
   const tail = variations.slice(1);
-  const combinations = values
-    .map(value => records.map(record => ({...record, [field]: value})))
-    .reduce((a, b) => a.concat(b), []);
+  const combinations = [];
+  for (const value of values) {
+    combinations.push(...records.map(record => ({...record, [field]: value})));
+  }
 
   return combine(combinations, tail);
 }
