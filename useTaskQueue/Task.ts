@@ -1,3 +1,3 @@
-export interface Task<I, O> {
+export default interface Task<I, O> {
   (input: I): O[] | Promise<O[]>;
 }

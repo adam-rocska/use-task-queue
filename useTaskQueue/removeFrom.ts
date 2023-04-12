@@ -6,10 +6,7 @@ export default function removeFrom<V>(
 ) {
   set(queue => {
     const index = queue.findIndex(v => v === value);
-    if (index === -1) {
-      console.info('Item already removed.', value);
-      return queue;
-    }
+    if (index === -1) return queue;
     return queue.filter((_, i) => i !== index);
   });
 }

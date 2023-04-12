@@ -20,6 +20,46 @@ describe('TaskQueueHook', () => {
           push: [1, true, undefined, 'string', {}],
           kill: [1, true, undefined, 'string', {}],
         }),
+        ...buildStubRecords({
+          input: [[]],
+          process: [1, true, undefined, 'string', {}, () => {}],
+          output: [1, true, undefined, 'string', {}, () => {}],
+          error: [1, true, undefined, 'string', {}, () => {}],
+          push: [1, true, undefined, 'string', {}],
+          kill: [1, true, undefined, 'string', {}],
+        }),
+        ...buildStubRecords({
+          input: [[]],
+          process: [[]],
+          output: [1, true, undefined, 'string', {}, () => {}],
+          error: [1, true, undefined, 'string', {}, () => {}],
+          push: [1, true, undefined, 'string', {}],
+          kill: [1, true, undefined, 'string', {}],
+        }),
+        ...buildStubRecords({
+          input: [[]],
+          process: [[]],
+          output: [[]],
+          error: [1, true, undefined, 'string', {}, () => {}],
+          push: [1, true, undefined, 'string', {}],
+          kill: [1, true, undefined, 'string', {}],
+        }),
+        ...buildStubRecords({
+          input: [[]],
+          process: [[]],
+          output: [[]],
+          error: [[]],
+          push: [1, true, undefined, 'string', {}],
+          kill: [1, true, undefined, 'string', {}],
+        }),
+        ...buildStubRecords({
+          input: [[]],
+          process: [[]],
+          output: [[]],
+          error: [[]],
+          push: [() => {}],
+          kill: [1, true, undefined, 'string', {}],
+        }),
       ].forEach(value => expect(isTaskQueueHook(value)).toBe(false)));
   });
 });

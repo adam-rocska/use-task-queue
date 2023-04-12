@@ -1,5 +1,5 @@
 import InconsistencyError from '#InconsistencyError';
-import {Task} from '#Task';
+import Task from '#Task';
 import {TaskQueueDescriptor} from '#TaskQueueDescriptor';
 import {consistencyGuard, descriptors} from '#consistencyGuard';
 import {json} from '@21gram-consulting/ts-codec';

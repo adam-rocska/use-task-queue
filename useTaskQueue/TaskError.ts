@@ -13,7 +13,6 @@ export default class TaskError<I, O> extends Error {
   ) {
     super(`[TASK ERROR][${taskName}] - ${message}`);
     this.taskName = taskName;
-    this.message = message;
     if (input !== undefined) this.input = input;
     if (error !== undefined) this.error = error;
     if (output !== undefined) this.output = output;

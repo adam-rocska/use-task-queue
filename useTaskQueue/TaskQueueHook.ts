@@ -14,6 +14,7 @@ export interface TaskQueueHook<I, O> {
 export function isTaskQueueHook<I, O>(
   value: object
 ): value is TaskQueueHook<I, O> {
+  if (value === null) return false;
   const candidate = value as TaskQueueHook<I, O>;
   if (!Array.isArray(candidate.input)) return false;
   if (!Array.isArray(candidate.process)) return false;

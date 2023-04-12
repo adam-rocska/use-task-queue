@@ -1,6 +1,6 @@
 import {Codec, isCodec} from '@21gram-consulting/ts-codec';
 import {TaskQueueHook, isTaskQueueHook} from './TaskQueueHook';
-import {Task} from './Task';
+import Task from './Task';
 
 export interface TaskQueueDescriptor<I, O> {
   readonly name: string;
@@ -33,7 +33,16 @@ export const isTaskQueueDescriptor = (
   if (typeof candidate.name !== 'string') return false;
   if (!isCodec(candidate.codec)) return false;
   if (typeof candidate.task !== 'function') return false;
-  if (candidate.input !== undefined && !isTaskQueueHook(candidate.input))
+  if ('input' in candidate && !isTaskQueueHook(candidate.input)) return false;
+  if (
+    'precondition' in candidate &&
+    typeof candidate.precondition !== 'function'
+  )
+    return false;
+  if (
+    'postcondition' in candidate &&
+    typeof candidate.postcondition !== 'function'
+  )
     return false;
   return true;
 };
