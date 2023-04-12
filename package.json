@@ -64,5 +64,9 @@
         "statements": 100
       }
     }
+  },
+  "dependencies": {
+    "@types/deep-equal": "^1.0.1",
+    "deep-equal": "^2.2.0"
   }
 }
