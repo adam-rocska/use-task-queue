@@ -9,7 +9,7 @@ export interface TaskQueueDescriptor<I, O> {
   readonly input?: TaskQueueHook<I, O>;
   readonly precondition?: (input: I) => boolean;
   readonly postcondition?: (input: I, output: O) => boolean;
-};
+}
 
 /**
  * @summary
@@ -22,16 +22,23 @@ export interface TaskQueueDescriptor<I, O> {
  * @typeParam I - The type of the input to the task queue.
  * @typeParam O - The type of the output of the task queue.
  */
-export const TaskQueueDescriptor = <I, O>(descriptor: TaskQueueDescriptor<I, O>) => descriptor;
+export const TaskQueueDescriptor = <I, O>(
+  descriptor: TaskQueueDescriptor<I, O>
+) => descriptor;
 
-export const isTaskQueueDescriptor = (value: object): value is TaskQueueDescriptor<unknown, unknown> => {
+export const isTaskQueueDescriptor = (
+  value: object
+): value is TaskQueueDescriptor<unknown, unknown> => {
   return (
     typeof (value as any).name === 'string' &&
     typeof (value as any).codec === 'object' &&
     (value as any).codec !== null &&
     typeof (value as any).task === 'function' &&
-    (typeof (value as any).input === 'undefined' || typeof (value as any).input === 'function') &&
-    (typeof (value as any).precondition === 'undefined' || typeof (value as any).precondition === 'function') &&
-    (typeof (value as any).postcondition === 'undefined' || typeof (value as any).postcondition === 'function')
+    (typeof (value as any).input === 'undefined' ||
+      typeof (value as any).input === 'function') &&
+    (typeof (value as any).precondition === 'undefined' ||
+      typeof (value as any).precondition === 'function') &&
+    (typeof (value as any).postcondition === 'undefined' ||
+      typeof (value as any).postcondition === 'function')
   );
 };
