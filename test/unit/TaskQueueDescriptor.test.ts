@@ -16,8 +16,8 @@ describe('TaskQueueDescriptor', () => {
 
   describe('.isTaskQueueDescriptor()', () => {
     const invalidDescriptors = buildStubRecords({
-      name: [1, true, false, null, undefined, {}, [], {}, ()=> {}],
-      codec: [1, true, false, null, undefined, 'string', [], {}, ()=> {}],
+      name: [1, true, false, null, undefined, {}, [], {}, () => {}],
+      codec: [1, true, false, null, undefined, 'string', [], {}, () => {}],
       task: [1, true, false, null, undefined, 'string', [], {}],
     });
 
@@ -25,7 +25,7 @@ describe('TaskQueueDescriptor', () => {
       name: ['test'],
       codec: [json.number],
       task: [(i: number) => [i], async (i: number) => [i]],
-      input: [undefined, nullTaskQueue]
+      input: [undefined, nullTaskQueue],
     });
 
     it('should return true if the value is a TaskQueueDescriptor', () => {

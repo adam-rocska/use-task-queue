@@ -9,5 +9,4 @@ describe('consistencyGuard', () => {
     consistencyGuard({name: 'test'});
     consistencyGuard({name: 'test'});
   });
-
 });
