@@ -23,6 +23,29 @@ describe('consistencyGuard', () => {
     });
   });
 
+  it('should pass silently if the store already contains the same reference.', () => {
+    const descriptor = TaskQueueDescriptor<number, number>({
+      name: 'test',
+      codec: json.number,
+      task: v => [v],
+    });
+    consistencyGuard(descriptor);
+    consistencyGuard(descriptor);
+  });
+
+  it('should pass silently for different consecutive calls.', () => {
+    consistencyGuard({
+      name: 'test-1',
+      codec: json.number,
+      task: v => [v],
+    });
+    consistencyGuard({
+      name: 'test-2',
+      codec: json.string,
+      task: v => [v],
+    });
+  });
+
   it('should pass silently if the store has the same descriptor.', () => {
     const task: Task<number, number> = v => [v];
     consistencyGuard({
