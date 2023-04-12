@@ -7,7 +7,7 @@ export default function buildStubRecords(
 export default function buildStubRecords(
   ...args: Array<any>
 ): Array<Record<any, any>> {
-  if (args.every(v => typeof v === 'object')) {
+  if (args.every(isObject)) {
     const records = [];
     for (const shape of args) {
       records.push(...combine([{}], Object.entries(shape)));
@@ -15,10 +15,11 @@ export default function buildStubRecords(
     return records;
   }
 
-  return combine(
-    [{}],
-    args.map(field => [field.name, field()])
-  );
+  return combine([{}], args.map(toVariations));
+}
+
+function toVariations(factory: () => any[]): [field: string, values: any[]] {
+  return [factory.name, factory()];
 }
 
 function combine(
@@ -30,8 +31,14 @@ function combine(
   const tail = variations.slice(1);
   const combinations = [];
   for (const value of values) {
-    combinations.push(...records.map(record => ({...record, [field]: value})));
+    for (const record of records) {
+      combinations.push({...record, [field]: value});
+    }
   }
 
   return combine(combinations, tail);
+}
+
+function isObject(v: any): v is object {
+  return typeof v === 'object';
 }
