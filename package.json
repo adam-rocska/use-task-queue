@@ -56,7 +56,9 @@
     "typedoc-plugin-expand-object-like-types": "^0.1.2",
     "typedoc-plugin-mdn-links": "^3.0.3",
     "typedoc-plugin-versions": "^0.2.3",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "engines": {
     "node": ">=14"
