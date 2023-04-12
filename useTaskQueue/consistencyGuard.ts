@@ -11,10 +11,12 @@ export function consistencyGuard(descriptor: TaskQueueDescriptor<any, any>) {
     if (deepEqual(descriptor, knownDescriptor)) continue;
     // We do everything we can to stop the show and let the developer know about inconsistency.
     const error = new InconsistencyError(knownDescriptor, descriptor);
-    console.warn(error);
     console.error(error);
-    if (typeof window === 'object') {
-      window.dispatchEvent(new ErrorEvent('InconsistencyError', {error}));
+    if (
+      typeof dispatchEvent === 'function' &&
+      typeof ErrorEvent === 'function'
+    ) {
+      dispatchEvent(new ErrorEvent('InconsistencyError', {error}));
     }
     throw error;
   }

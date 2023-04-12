@@ -1,8 +1,19 @@
+import InconsistencyError from '#InconsistencyError';
+import {Task} from '#Task';
+import {TaskQueueDescriptor} from '#TaskQueueDescriptor';
 import {consistencyGuard, descriptors} from '#consistencyGuard';
 import {json} from '@21gram-consulting/ts-codec';
 
 describe('consistencyGuard', () => {
+  const originalConsole = global.console;
+  const originalDispatchEvent = global.dispatchEvent;
+  const originalErrorEvent = global.ErrorEvent;
   beforeEach(() => descriptors.clear());
+  afterEach(() => {
+    global.console = originalConsole;
+    global.dispatchEvent = originalDispatchEvent;
+    global.ErrorEvent = originalErrorEvent;
+  });
 
   it('should pass silently if the store is empty.', () => {
     consistencyGuard({
@@ -13,15 +24,46 @@ describe('consistencyGuard', () => {
   });
 
   it('should pass silently if the store has the same descriptor.', () => {
+    const task: Task<number, number> = v => [v];
     consistencyGuard({
       name: 'test',
       codec: json.number,
-      task: v => [v],
+      task,
     });
     consistencyGuard({
       name: 'test',
       codec: json.number,
+      task,
+    });
+  });
+
+  it('should throw if the store has a different descriptor.', () => {
+    const knownDescriptor = TaskQueueDescriptor<number, number>({
+      name: 'test',
+      codec: json.number,
       task: v => [v],
+    });
+    const collidingDescriptor = TaskQueueDescriptor<number, number>({
+      name: 'test',
+      codec: json.number,
+      task: v => [v],
+    });
+
+    global.console.error = jest.fn();
+    global.dispatchEvent = jest.fn();
+    const stubErrorEvent = {};
+    global.ErrorEvent = jest.fn().mockReturnValueOnce(stubErrorEvent);
+
+    consistencyGuard(knownDescriptor);
+    const expectedError = new InconsistencyError(
+      knownDescriptor,
+      collidingDescriptor
+    );
+    expect(() => consistencyGuard(collidingDescriptor)).toThrow(expectedError);
+    expect(console.error).toHaveBeenCalledWith(expectedError);
+    expect(global.dispatchEvent).toHaveBeenCalledWith(stubErrorEvent);
+    expect(global.ErrorEvent).toHaveBeenCalledWith('InconsistencyError', {
+      error: expectedError,
     });
   });
 });
