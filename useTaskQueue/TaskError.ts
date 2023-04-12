@@ -1,22 +1,21 @@
 export default class TaskError<I, O> extends Error {
-  readonly name: string;
-  readonly message: string;
+  readonly taskName: string;
   readonly input?: I;
   readonly error?: any;
   readonly output?: O;
 
   constructor(
-    name: string,
+    taskName: string,
     message: string,
     input?: I,
     error?: any,
     output?: O
   ) {
-    super(`[TASK ERROR][${name}] - ${message}`);
-    this.name = name;
+    super(`[TASK ERROR][${taskName}] - ${message}`);
+    this.taskName = taskName;
     this.message = message;
-    this.input = input;
-    this.error = error;
-    this.output = output;
+    if (input !== undefined) this.input = input;
+    if (error !== undefined) this.error = error;
+    if (output !== undefined) this.output = output;
   }
 }

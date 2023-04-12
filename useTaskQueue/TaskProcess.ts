@@ -7,6 +7,7 @@ export interface TaskProcess<I, O> {
 
 export function isTaskProcess<I,O>(value: object): value is TaskProcess<I, O> {
   const candidate = value as TaskProcess<I, O>;
-  if (!candidate.input) return false;
+  if (candidate.hasOwnProperty('input') === false) return false;
+  if (candidate.hasOwnProperty('task') === false) return false;
   return candidate.task instanceof CancellablePromise;
 }
