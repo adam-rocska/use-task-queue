@@ -6,7 +6,7 @@ import TaskError from './TaskError';
 import {TaskQueueHook} from './TaskQueueHook';
 import {TaskOutput} from './TaskOutput';
 import {TaskQueueDescriptor} from './TaskQueueDescriptor';
-import consistencyGuard from './consistencyGuard';
+import {consistencyGuard} from './consistencyGuard';
 import {TaskProcess} from './TaskProcess';
 import {CancellablePromise} from 'real-cancellable-promise';
 

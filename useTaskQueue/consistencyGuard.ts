@@ -2,11 +2,9 @@ import deepEqual from 'deep-equal';
 import InconsistencyError from './InconsistencyError';
 import {TaskQueueDescriptor} from './TaskQueueDescriptor';
 
-const descriptors = new Set<TaskQueueDescriptor<any, any>>();
+export const descriptors = new Set<TaskQueueDescriptor<any, any>>();
 
-export default function consistencyGuard(
-  descriptor: TaskQueueDescriptor<any, any>
-) {
+export function consistencyGuard(descriptor: TaskQueueDescriptor<any, any>) {
   if (descriptors.has(descriptor)) return;
   for (const knownDescriptor of descriptors) {
     if (knownDescriptor.name !== descriptor.name) continue;
