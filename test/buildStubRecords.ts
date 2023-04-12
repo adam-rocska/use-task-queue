@@ -10,12 +10,12 @@ export default function buildStubRecords(
   if (args.every(isObject)) {
     const records = [];
     for (const shape of args) {
-      records.push(...combine([{}], Object.entries(shape)));
+      records.push(...combine(Object.entries(shape)));
     }
     return records;
   }
 
-  return combine([{}], args.map(toVariations));
+  return combine(args.map(toVariations));
 }
 
 function toVariations(factory: () => any[]): [field: string, values: any[]] {
@@ -23,20 +23,19 @@ function toVariations(factory: () => any[]): [field: string, values: any[]] {
 }
 
 function combine(
-  records: Record<any, any>[],
   variations: [field: string, values: any[]][]
 ): Record<any, any>[] {
-  if (variations.length === 0) return records;
-  const [field, values] = variations[0]!;
-  const tail = variations.slice(1);
-  const combinations = [];
-  for (const value of values) {
-    for (const record of records) {
-      combinations.push({...record, [field]: value});
+  let combinations: Record<any, any>[] = [{}];
+  for (const [field, values] of variations) {
+    const newCombinations = [];
+    for (const value of values) {
+      newCombinations.push(
+        ...combinations.map(record => ({...record, [field]: value}))
+      );
     }
+    combinations = newCombinations;
   }
-
-  return combine(combinations, tail);
+  return combinations;
 }
 
 function isObject(v: any): v is object {
