@@ -58,7 +58,8 @@
     "skipLibCheck": true
   },
   "include": [
-    "useTaskQueue/**/*.ts"
+    "useTaskQueue/**/*.ts",
+    "test/unit/popFrom.test.ts"
   ],
   "exclude": [
     "node_modules",

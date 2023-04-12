@@ -1,4 +1,4 @@
-import popFrom from './popFrom';
+import popFrom from '#popFrom';
 
 describe('popFrom', () => {
   it('should return undefined if the queue is empty', () => {
