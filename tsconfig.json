@@ -1,0 +1,83 @@
+{
+  "compilerOptions": {
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "pretty": true,
+    "sourceMap": true,
+    "target": "ESNext",
+    "lib": [
+      "ES2021",
+      "DOM"
+    ],
+    "rootDir": ".",
+    "module": "ESNext",
+    "moduleResolution": "nodenext",
+    "baseUrl": "./",
+    "paths": {
+      "#*": [
+        "./useTaskQueue/*"
+      ],
+      "!unit/*": [
+        "./test/unit/*"
+      ],
+      "!component/*": [
+        "./test/component/*"
+      ],
+      "!integration/*": [
+        "./test/integration/*"
+      ],
+      "!system/*": [
+        "./test/system/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "allowJs": false,
+    "declaration": true,
+    "outDir": "./lib/",
+    "removeComments": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitReturns": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "useTaskQueue/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "docs",
+    "coverage"
+  ],
+  "typedocOptions": {
+    "name": "Reactive Task Queue for React",
+    "includeVersion": true,
+    "entryPoints": "./useTaskQueue/index.ts",
+    "entryPointStrategy": "Expand",
+    "out": "docs",
+    "disableSources": true,
+    "readme": "./useTaskQueue/SUMMARY.md",
+    "searchInComments": true,
+    "navigationLinks": {
+      "21Gram Consulting": "https://www.21gram.consulting",
+      "GitHub": "https://github.com/21GramConsulting/useTaskQueue",
+    }
+  }
+}
