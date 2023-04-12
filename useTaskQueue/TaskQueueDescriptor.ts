@@ -2,7 +2,7 @@ import {Codec} from '@21gram-consulting/ts-codec';
 import {TaskQueueHook} from './TaskQueueHook';
 import {Task} from './Task';
 
-export type TaskQueueDescriptor<I, O> = {
+export interface TaskQueueDescriptor<I, O> {
   readonly name: string;
   readonly codec: Codec<I>;
   readonly task: Task<I, O>;
@@ -23,3 +23,15 @@ export type TaskQueueDescriptor<I, O> = {
  * @typeParam O - The type of the output of the task queue.
  */
 export const TaskQueueDescriptor = <I, O>(descriptor: TaskQueueDescriptor<I, O>) => descriptor;
+
+export const isTaskQueueDescriptor = (value: object): value is TaskQueueDescriptor<unknown, unknown> => {
+  return (
+    typeof (value as any).name === 'string' &&
+    typeof (value as any).codec === 'object' &&
+    (value as any).codec !== null &&
+    typeof (value as any).task === 'function' &&
+    (typeof (value as any).input === 'undefined' || typeof (value as any).input === 'function') &&
+    (typeof (value as any).precondition === 'undefined' || typeof (value as any).precondition === 'function') &&
+    (typeof (value as any).postcondition === 'undefined' || typeof (value as any).postcondition === 'function')
+  );
+};

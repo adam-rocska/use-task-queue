@@ -19,17 +19,8 @@
       "#*": [
         "./useTaskQueue/*"
       ],
-      "!unit/*": [
-        "./test/unit/*"
-      ],
-      "!component/*": [
-        "./test/component/*"
-      ],
-      "!integration/*": [
-        "./test/integration/*"
-      ],
-      "!system/*": [
-        "./test/system/*"
+      "!*": [
+        "./test/*"
       ]
     },
     "resolveJsonModule": true,

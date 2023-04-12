@@ -1,3 +1,1 @@
-import {CancellablePromise} from 'real-cancellable-promise';
-
-export type Task<I, O> = (input: I) => O[] | CancellablePromise<O[]>;
+export type Task<I, O> = (input: I) => O[] | Promise<O[]>;

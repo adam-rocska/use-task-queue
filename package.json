@@ -55,7 +55,7 @@
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^#(.*)$": "<rootDir>/useTaskQueue/$1",
-      "^!unit/(.*)$": "<rootDir>/test/unit/$1"
+      "^!(.*)$": "<rootDir>/test/$1"
     },
     "coverageThreshold": {
       "global": {
