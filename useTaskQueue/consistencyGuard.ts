@@ -1,3 +1,4 @@
+import deepEqual from 'deep-equal';
 import InconsistencyError from './InconsistencyError';
 import {TaskQueueDescriptor} from './TaskQueueDescriptor';
 
@@ -9,16 +10,15 @@ export default function consistencyGuard(
   if (descriptors.has(descriptor)) return;
   for (const knownDescriptor of descriptors) {
     if (knownDescriptor.name !== descriptor.name) continue;
-    // TODO: couldn't do any better. Object equality is still an issue in JS.
+    if (deepEqual(descriptor, knownDescriptor)) continue;
+    // We do everything we can to stop the show and let the developer know about inconsistency.
     const error = new InconsistencyError(knownDescriptor, descriptor);
     console.warn(error);
-    // const error = new InconsistencyError(knownDescriptor, descriptor);
-    // We did everything we could to stop the show and let the dev know that it's fucked.
-    // console.error(error);
-    // if (typeof window === 'object') {
-    //   window.dispatchEvent(new ErrorEvent('InconsistencyError', {error}));
-    // }
-    // throw error;
+    console.error(error);
+    if (typeof window === 'object') {
+      window.dispatchEvent(new ErrorEvent('InconsistencyError', {error}));
+    }
+    throw error;
   }
   descriptors.add(descriptor);
 }
