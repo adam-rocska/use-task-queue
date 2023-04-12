@@ -29,9 +29,9 @@ function combine(
   for (const [field, values] of variations) {
     const newCombinations = [];
     for (const value of values) {
-      newCombinations.push(
-        ...combinations.map(record => ({...record, [field]: value}))
-      );
+      for (const record of combinations) {
+        newCombinations.push({...record, [field]: value});
+      }
     }
     combinations = newCombinations;
   }
