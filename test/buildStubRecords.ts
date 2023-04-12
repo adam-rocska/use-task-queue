@@ -10,7 +10,11 @@ export default function buildStubRecords(...args: Array<any>): Array<Record<any,
           if (typeof name !== 'string') throw "Only string names accepted.";
           if (!Array.isArray(variations)) throw "Only arrays of variations accepted.";
           const factory = () => variations;
-          factory.name = name;
+          Object.defineProperty(factory, 'name', {
+            value: name,
+            writable: false,
+            enumerable: true
+          });
           return factory;
         })
     ));
