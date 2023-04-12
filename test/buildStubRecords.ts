@@ -25,15 +25,16 @@ function toVariations(factory: () => any[]): [field: string, values: any[]] {
 function combine(
   variations: [field: string, values: any[]][]
 ): Record<any, any>[] {
-  let combinations: Record<any, any>[] = [{}];
+  const combinations: Record<any, any>[] = [{}];
   for (const [field, values] of variations) {
-    const newCombinations = [];
-    for (const value of values) {
-      for (const record of combinations) {
-        newCombinations.push({...record, [field]: value});
+    const combinationCount = combinations.length;
+    for (let i = 0; i < combinationCount; i++) {
+      const record = combinations[i];
+      for (const value of values) {
+        combinations.push({...record, [field]: value});
       }
     }
-    combinations = newCombinations;
+    combinations.splice(0, combinationCount);
   }
   return combinations;
 }
