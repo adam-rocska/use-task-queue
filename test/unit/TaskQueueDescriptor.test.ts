@@ -1,6 +1,7 @@
 import buildStubRecords from '!buildStubRecords';
 import {TaskQueueDescriptor, isTaskQueueDescriptor} from '#TaskQueueDescriptor';
 import {json} from '@21gram-consulting/ts-codec';
+import {nullTaskQueue} from '#nullTaskQueue';
 
 describe('TaskQueueDescriptor', () => {
   describe('.TaskQueueDescriptor()', () => {
@@ -25,20 +26,21 @@ describe('TaskQueueDescriptor', () => {
       name: ['test'],
       codec: [json.number],
       task: [(i: number) => [i], async (i: number) => [i]],
-      input: [undefined, nullTaskQueue],
+      input: [undefined, nullTaskQueue()],
     });
 
-    it('should return true if the value is a TaskQueueDescriptor', () => {
-      const descriptor: TaskQueueDescriptor<number, number> = {
-        name: 'test',
-        codec: json.number,
-        task: i => [i],
-      };
-      expect(isTaskQueueDescriptor(descriptor)).toBe(true);
-    });
+    test.each(validDescriptors)(
+      'should return true if the value is a TaskQueueDescriptor',
+      validValue => {
+        expect(isTaskQueueDescriptor(validValue)).toBe(true);
+      }
+    );
 
-    it('should return false if the value is not a TaskQueueDescriptor', () => {
-      expect(isTaskQueueDescriptor({})).toBe(false);
-    });
+    test.each(invalidDescriptors)(
+      'should return false if the value is not a TaskQueueDescriptor',
+      invalidValue => {
+        expect(isTaskQueueDescriptor(invalidValue)).toBe(false);
+      }
+    );
   });
 });

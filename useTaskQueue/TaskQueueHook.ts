@@ -9,8 +9,10 @@ export interface TaskQueueHook<I, O> {
   readonly error: readonly TaskError<I, O>[];
   readonly push: (input: I | I[]) => void;
   readonly kill: (process: TaskProcess<I, O>) => void;
-};
+}
 
-export function isTaskQueueHook<I,O>(value: object): value is TaskQueueHook<I,O> {
+export function isTaskQueueHook<I, O>(
+  value: object
+): value is TaskQueueHook<I, O> {
   return true;
 }
