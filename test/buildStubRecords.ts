@@ -6,7 +6,7 @@ export default function buildStubRecords(
 ): Array<Record<any, any>>;
 export default function buildStubRecords(
   ...args: Array<any>
-): Array<Record<any, any>> {
+): Record<any, any>[] {
   if (args.every(isObject)) {
     const records = [];
     for (const shape of args) {
@@ -14,7 +14,6 @@ export default function buildStubRecords(
     }
     return records;
   }
-
   return combine(args.map(toVariations));
 }
 

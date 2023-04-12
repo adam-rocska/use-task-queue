@@ -16,31 +16,25 @@ describe('TaskQueueDescriptor', () => {
   });
 
   describe('.isTaskQueueDescriptor()', () => {
-    const invalidDescriptors = buildStubRecords({
-      name: [1, true, false, null, undefined, {}, [], {}, () => {}],
-      codec: [1, true, false, null, undefined, 'string', [], {}, () => {}],
-      task: [1, true, false, null, undefined, 'string', [], {}],
+    it('should return true if the value is a TaskQueueDescriptor', () => {
+      buildStubRecords({
+        name: ['test'],
+        codec: [json.number],
+        task: [(i: number) => [i], async (i: number) => [i]],
+        input: [undefined, nullTaskQueue()],
+      }).forEach(validValue =>
+        expect(isTaskQueueDescriptor(validValue)).toBe(true)
+      );
     });
 
-    const validDescriptors = buildStubRecords({
-      name: ['test'],
-      codec: [json.number],
-      task: [(i: number) => [i], async (i: number) => [i]],
-      input: [undefined, nullTaskQueue()],
+    it('should return false if the value is not a TaskQueueDescriptor', () => {
+      buildStubRecords({
+        name: [1, true, false, null, undefined, {}, [], {}, () => {}],
+        codec: [1, true, false, null, undefined, 'string', [], {}, () => {}],
+        task: [1, true, false, null, undefined, 'string', [], {}],
+      }).forEach(invalidValue =>
+        expect(isTaskQueueDescriptor(invalidValue)).toBe(false)
+      );
     });
-
-    test.each(validDescriptors)(
-      'should return true if the value is a TaskQueueDescriptor',
-      validValue => {
-        expect(isTaskQueueDescriptor(validValue)).toBe(true);
-      }
-    );
-
-    test.each(invalidDescriptors)(
-      'should return false if the value is not a TaskQueueDescriptor',
-      invalidValue => {
-        expect(isTaskQueueDescriptor(invalidValue)).toBe(false);
-      }
-    );
   });
 });
