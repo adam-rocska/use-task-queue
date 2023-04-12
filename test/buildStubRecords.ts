@@ -44,11 +44,6 @@ export default function buildStubRecords(
       .map(value => records.map(record => ({...record, [field]: value})))
       .reduce((a, b) => a.concat(b), []);
 
-    console.log(
-      'mapped',
-      values.map(value => records.map(record => ({...record, [field]: value})))
-    );
-
     return combine(combinations, tail);
   }
 

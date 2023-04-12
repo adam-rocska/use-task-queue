@@ -9,7 +9,6 @@ describe('TaskProcess', () => {
         output: [1, true, false, null, undefined, {}, [], () => {}],
       }),
     ])('should return true if the value is a TaskProcess', shouldWork => {
-      console.log(shouldWork);
       expect(isTaskOutput(shouldWork)).toBe(true);
     });
 
