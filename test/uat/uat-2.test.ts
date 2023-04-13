@@ -25,14 +25,11 @@ describe('Simple hook task execution', () => {
       result.current.push(2);
     });
 
-    const hook = result.current;
-    expect(hook.input.length).toBe(0);
-    expect(hook.process.length).toBe(0);
-    expect(hook.output.length).toBe(1);
-    expect(hook.error.length).toBe(0);
-
-    const output = hook.output[0]!;
-    expect(output.input).toBe(2);
-    expect(output.output).toBe(4);
+    expect(result.current).toBeInState({
+      input: [],
+      process: [],
+      output: [{input: 2, output: 4}],
+      error: [],
+    });
   });
 });

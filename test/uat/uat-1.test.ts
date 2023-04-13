@@ -6,9 +6,6 @@ import {json} from '@21gram-consulting/ts-codec';
 beforeEach(() => {
   descriptors.clear();
 });
-afterEach(() => {
-  jest.clearAllMocks();
-});
 
 test('Hook created with a clean state, and nothing to recover from storage.', () => {
   const {result} = renderHook(() =>
@@ -18,9 +15,13 @@ test('Hook created with a clean state, and nothing to recover from storage.', ()
       task: v => [v],
     })
   );
-  const hook = result.current;
-  expect(hook.input.length).toBe(0);
-  expect(hook.process.length).toBe(0);
-  expect(hook.output.length).toBe(0);
-  expect(hook.error.length).toBe(0);
+
+  expect.extend({});
+
+  expect(result.current).toBeInState({
+    input: [],
+    process: [],
+    output: [],
+    error: [],
+  });
 });
