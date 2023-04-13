@@ -66,6 +66,10 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "<rootDir>/lib/",
+      "<rootDir>/node_modules/"
+    ],
     "moduleNameMapper": {
       "^#(.*)$": "<rootDir>/useTaskQueue/$1",
       "^!(.*)$": "<rootDir>/test/$1"
@@ -81,8 +85,6 @@
   },
   "dependencies": {
     "@21gram-consulting/ts-codec": "^1.2.0",
-    "@types/deep-equal": "^1.0.1",
-    "deep-equal": "^2.2.0",
     "real-cancellable-promise": "^1.1.2"
   },
   "peerDependencies": {
