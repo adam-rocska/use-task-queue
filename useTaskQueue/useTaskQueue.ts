@@ -8,7 +8,7 @@ import {TaskOutput} from './TaskOutput';
 import {TaskQueueDescriptor} from './TaskQueueDescriptor';
 import {consistencyGuard} from './consistencyGuard';
 import {TaskProcess} from './TaskProcess';
-import {CancellablePromise} from 'real-cancellable-promise';
+import {isPromiseWithCancel} from 'real-cancellable-promise';
 
 export default function useTaskQueue<I, O>(
   descriptor: TaskQueueDescriptor<I, O>
@@ -79,6 +79,7 @@ export default function useTaskQueue<I, O>(
     if (!processing.includes(process)) return;
     if (process.task instanceof Promise) return;
     removeFrom(setProcessing, process);
+    process.task.cancel();
   }, []);
 
   useEffect(() => {
@@ -107,17 +108,16 @@ export default function useTaskQueue<I, O>(
       pushTo(setOutput, outputs);
     };
 
-    if (results instanceof CancellablePromise || results instanceof Promise) {
+    if (isPromiseWithCancel(results) || results instanceof Promise) {
       const process: TaskProcess<I, O> = {input: taskInput, task: results};
       pushTo(setProcessing, [process]);
       results
-        .then(reduceResults)
-        .catch(error =>
+        .then(reduceResults, error =>
           pushTo(setError, [
             new TaskError(name, 'Task failed.', taskInput, error),
           ])
         )
-        .finally(() => removeFrom(setProcessing, process));
+        .then(() => removeFrom(setProcessing, process));
       return;
     } else {
       reduceResults(results);

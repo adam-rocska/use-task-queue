@@ -1,4 +1,4 @@
-import InconsistencyError from './InconsistencyError';
+// import InconsistencyError from './InconsistencyError';
 import {TaskQueueDescriptor} from './TaskQueueDescriptor';
 
 export const descriptors = new Set<TaskQueueDescriptor<any, any>>();
@@ -11,7 +11,7 @@ export function consistencyGuard(descriptor: TaskQueueDescriptor<any, any>) {
 
     // if (deepEqual(descriptor, knownDescriptor)) continue;
     // We do everything we can to stop the show and let the developer know about inconsistency.
-    const error = new InconsistencyError(knownDescriptor, descriptor);
+    // const error = new InconsistencyError(knownDescriptor, descriptor);
     // console.error(error);
     // if (
     //   typeof dispatchEvent === 'function' &&
@@ -20,7 +20,7 @@ export function consistencyGuard(descriptor: TaskQueueDescriptor<any, any>) {
     //   dispatchEvent(new ErrorEvent('InconsistencyError', {error}));
     // }
     // throw error;
-    console.warn(error);
+    // console.warn(error);
   }
   descriptors.add(descriptor);
 }
