@@ -32,6 +32,7 @@ export default function useTaskQueue<I, O>(
     () => descriptor.postcondition ?? (() => true),
     [descriptor.postcondition]
   );
+  const inputQueue = useMemo(() => descriptor.input, [descriptor.input]);
 
   const getPreconditionFailure = useCallback<GetPreconditionFailure>(
     input => {
@@ -123,6 +124,11 @@ export default function useTaskQueue<I, O>(
       reduceResults(results);
     }
   }, [getPostconditionFailure, input, name, task]);
+
+  // useEffect(() => {
+  //   if (!inputQueue) return;
+  //   push(inputQueue.output.map(o => o.output));
+  // }, [inputQueue, push]);
 
   return {input, process: processing, output, error, push, kill};
 }

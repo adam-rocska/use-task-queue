@@ -6,7 +6,7 @@ export interface TaskQueueDescriptor<I, O> {
   readonly name: string;
   readonly codec: Codec<I>;
   readonly task: Task<I, O>;
-  readonly input?: TaskQueueHook<I, O>;
+  readonly input?: TaskQueueHook<any, I>;
   readonly precondition?: (input: I) => boolean;
   readonly postcondition?: (input: I, output: O) => boolean;
 }
