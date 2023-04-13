@@ -75,12 +75,12 @@ export default function useTaskQueue<I, O>(
     },
     [getPreconditionFailure]
   );
-  const kill = useCallback<TaskQueueHook<I, O>['kill']>(process => {
+  const kill: TaskQueueHook<I, O>['kill'] = process => {
     if (!processing.includes(process)) return;
     if (process.task instanceof Promise) return;
     removeFrom(setProcessing, process);
     process.task.cancel();
-  }, []);
+  };
 
   useEffect(() => {
     const popped = popFrom(setInput, input);
