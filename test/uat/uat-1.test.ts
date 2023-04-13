@@ -1,4 +1,4 @@
-import {renderHook} from '@testing-library/react-hooks/server';
+import {renderHook} from '@testing-library/react-hooks';
 import useTaskQueue from '#useTaskQueue';
 import {descriptors} from '#consistencyGuard';
 import {json} from '@21gram-consulting/ts-codec';
@@ -10,7 +10,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-it('Hook created with a clean state, and nothing to recover from storage.', () => {
+test('Hook created with a clean state, and nothing to recover from storage.', () => {
   const {result} = renderHook(() =>
     useTaskQueue({
       name: 'test',
