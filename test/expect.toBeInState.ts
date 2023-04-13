@@ -5,18 +5,16 @@ import {TaskQueueHook} from '#TaskQueueHook';
 // eslint-disable-next-line node/no-extraneous-import
 import type {SyncExpectationResult} from 'expect';
 
-export type Expectations<Hook> = Hook extends TaskQueueHook<infer I, infer O>
-  ? {
-      input: I[];
-      process: TaskProcess<I, O>[];
-      output: TaskOutput<I, O>[];
-      error: TaskError<I, O>[];
-    }
-  : never;
+export type Expectations<I, O> = {
+  input: I[];
+  process: TaskProcess<I, O>[];
+  output: TaskOutput<I, O>[];
+  error: TaskError<I, O>[];
+};
 
 export function toBeInState<I, O>(
   hook: TaskQueueHook<I, O>,
-  expectations: Expectations<TaskQueueHook<I, O>>
+  expectations: Expectations<I, O>
 ): SyncExpectationResult {
   if (hook === null) {
     return {
