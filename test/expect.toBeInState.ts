@@ -80,30 +80,30 @@ export function toBeInState<I, O>(
   }
 
   for (let i = 0; i < expectations.error.length; i++) {
-    const actualError = hook.error[i]?.error;
-    const expectedError = expectations.error[i]?.error;
-    if ((actualError?.name !== expectedError?.name) === null) {
+    const actualError = hook.error[i];
+    const expectedError = expectations.error[i];
+    if (actualError?.name !== expectedError?.name) {
       return fail(
         `Error name values at index ${i} don't match.`,
         actualError?.name,
         expectedError?.name
       );
     }
-    if ((actualError?.input !== expectedError?.input) === null) {
+    if (actualError?.input !== expectedError?.input) {
       return fail(
         `Error input values at index ${i} don't match.`,
         actualError?.input,
         expectedError?.input
       );
     }
-    if ((actualError?.error !== expectedError?.error) === null) {
+    if (actualError?.error !== expectedError?.error) {
       return fail(
         `Error error values at index ${i} don't match.`,
         actualError?.error,
         expectedError?.error
       );
     }
-    if ((actualError?.output !== expectedError?.output) === null) {
+    if (actualError?.output !== expectedError?.output) {
       return fail(
         `Error output values at index ${i} don't match.`,
         actualError?.output,
