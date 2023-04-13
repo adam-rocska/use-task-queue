@@ -44,6 +44,13 @@ export function toBeInState<I, O>(
       expectations.error.length
     );
   }
+  if (hook.output.length !== expectations.output.length) {
+    return fail(
+      'Output length mismatch.',
+      hook.output.length,
+      expectations.output.length
+    );
+  }
 
   for (let i = 0; i < expectations.process.length; i++) {
     if (hook.process[i]?.input !== expectations.process[i]?.input) {

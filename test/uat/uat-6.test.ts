@@ -11,13 +11,13 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-describe('Simple hook task execution, with single output', () => {
+describe('Simple hook task execution, with multiple outputs', () => {
   test('Produces expected output for a synchronous task.', async () => {
     const {result, rerender} = renderHook(() =>
       useTaskQueue({
         name: 'test',
         codec: json.number,
-        task: v => [v * 2],
+        task: v => [v * 2, v * 3, v * 4],
       })
     );
 
@@ -29,7 +29,11 @@ describe('Simple hook task execution, with single output', () => {
     expect(result.current).toBeInState({
       input: [],
       process: [],
-      output: [{input: 2, output: 4}],
+      output: [
+        {input: 2, output: 4},
+        {input: 2, output: 6},
+        {input: 2, output: 8},
+      ],
       error: [],
     });
   });
@@ -58,43 +62,17 @@ describe('Simple hook task execution, with single output', () => {
       error: [],
     });
 
-    resolve!([555]);
+    resolve!([111, 222, 333]);
     await waitForNextUpdate();
 
     expect(result.current).toBeInState({
       input: [],
       process: [],
-      output: [{input: 2, output: 555}],
-      error: [],
-    });
-  });
-
-  test("Can't kill a non cancellable process.", async () => {
-    const promise = new Promise<number[]>(() => {});
-    const {result, rerender} = renderHook(() =>
-      useTaskQueue({
-        name: 'test',
-        codec: json.number,
-        task: () => promise,
-      })
-    );
-
-    rerender();
-    act(() => result.current.push(2));
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [{input: 2, task: promise!}],
-      output: [],
-      error: [],
-    });
-
-    act(() => result.current.kill(result.current.process[0]!));
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [{input: 2, task: promise!}],
-      output: [],
+      output: [
+        {input: 2, output: 111},
+        {input: 2, output: 222},
+        {input: 2, output: 333},
+      ],
       error: [],
     });
   });
@@ -126,48 +104,17 @@ describe('Simple hook task execution, with single output', () => {
       error: [],
     });
 
-    resolve!([555]);
+    resolve!([111, 222, 333]);
     await waitForNextUpdate();
 
     expect(result.current).toBeInState({
       input: [],
       process: [],
-      output: [{input: 2, output: 555}],
-      error: [],
-    });
-  });
-
-  test('Can kill a cancellable process.', async () => {
-    const cancellation = jest.fn();
-    const promise = new CancellablePromise(
-      new Promise<number[]>(() => {}),
-      cancellation
-    );
-    const {result, rerender} = renderHook(() =>
-      useTaskQueue({
-        name: 'test',
-        codec: json.number,
-        task: () => promise,
-      })
-    );
-
-    rerender();
-    act(() => result.current.push(2));
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [{input: 2, task: promise!}],
-      output: [],
-      error: [],
-    });
-
-    act(() => result.current.kill(result.current.process[0]!));
-
-    expect(cancellation).toHaveBeenCalledTimes(1);
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [],
+      output: [
+        {input: 2, output: 111},
+        {input: 2, output: 222},
+        {input: 2, output: 333},
+      ],
       error: [],
     });
   });
