@@ -39,6 +39,9 @@ describe('nullTaskQueue', () => {
           kill: () => {
             throw new Error('Function not implemented.');
           },
+          flush: () => {
+            throw new Error('Function not implemented.');
+          },
         })
       ).toBe(false);
     });

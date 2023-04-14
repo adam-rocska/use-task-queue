@@ -9,6 +9,7 @@ import {TaskQueueDescriptor} from './TaskQueueDescriptor';
 import {consistencyGuard} from './consistencyGuard';
 import {TaskProcess} from './TaskProcess';
 import {isPromiseWithCancel} from 'real-cancellable-promise';
+import flushFrom from '#flushFrom';
 
 export default function useTaskQueue<I, O>(
   descriptor: TaskQueueDescriptor<I, O>
@@ -83,6 +84,33 @@ export default function useTaskQueue<I, O>(
     process.task.cancel();
   };
 
+  function flush(target: 'all'): void;
+  function flush(target: 'input', ...values: I[]): void;
+  function flush(target: 'process', ...values: TaskProcess<I, O>[]): void;
+  function flush(target: 'output', ...values: TaskOutput<I, O>[]): void;
+  function flush(target: 'error', ...values: TaskError<I, O>[]): void;
+  function flush(target: any, ...items: any[]) {
+    if (target === 'all') {
+      flushFrom(setInput);
+      flushFrom(setProcessing);
+      flushFrom(setOutput);
+      flushFrom(setError);
+      return;
+    }
+    if (target === 'input')
+      if (items.length > 0) return flushFrom(setInput, items);
+      else return flushFrom(setInput);
+    if (target === 'process')
+      if (items.length > 0) return flushFrom(setProcessing, items);
+      else return flushFrom(setProcessing);
+    if (target === 'output')
+      if (items.length > 0) return flushFrom(setOutput, items);
+      else return flushFrom(setOutput);
+    if (target === 'error')
+      if (items.length > 0) return flushFrom(setError, items);
+      else return flushFrom(setError);
+  }
+
   useEffect(() => {
     const popped = popFrom(setInput, input);
     if (!popped) return;
@@ -125,10 +153,11 @@ export default function useTaskQueue<I, O>(
     }
   }, [getPostconditionFailure, input, name, task]);
 
-  // useEffect(() => {
-  //   if (!inputQueue) return;
-  //   push(inputQueue.output.map(o => o.output));
-  // }, [inputQueue, push]);
+  useEffect(() => {
+    if (!inputQueue) return;
+    push(inputQueue.output.map(o => o.output));
+    inputQueue.flush('output');
+  }, [inputQueue, push]);
 
-  return {input, process: processing, output, error, push, kill};
+  return {input, process: processing, output, error, push, kill, flush};
 }

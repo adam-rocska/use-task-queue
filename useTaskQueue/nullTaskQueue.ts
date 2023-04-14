@@ -17,4 +17,5 @@ const nullTaskQueueHook = {
   error: nullQueue,
   push: noop,
   kill: noop,
+  flush: noop,
 };

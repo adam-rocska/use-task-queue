@@ -60,6 +60,15 @@ describe('TaskQueueHook', () => {
           push: [() => {}],
           kill: [1, true, undefined, 'string', {}],
         }),
+        ...buildStubRecords({
+          input: [[]],
+          process: [[]],
+          output: [[]],
+          error: [[]],
+          push: [() => {}],
+          kill: [() => {}],
+          flush: [1, true, undefined, 'string', {}],
+        }),
       ].forEach(value => expect(isTaskQueueHook(value)).toBe(false)));
   });
 });

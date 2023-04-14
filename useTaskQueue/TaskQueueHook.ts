@@ -7,8 +7,13 @@ export interface TaskQueueHook<I, O> {
   readonly process: readonly TaskProcess<I, O>[];
   readonly output: readonly TaskOutput<I, O>[];
   readonly error: readonly TaskError<I, O>[];
-  readonly push: (input: I | I[]) => void;
-  readonly kill: (process: TaskProcess<I, O>) => void;
+  push(input: I | I[]): void;
+  kill(process: TaskProcess<I, O>): void;
+  flush(target: 'all'): void;
+  flush(target: 'input', ...values: I[]): void;
+  flush(target: 'process', ...values: TaskProcess<I, O>[]): void;
+  flush(target: 'output', ...values: TaskOutput<I, O>[]): void;
+  flush(target: 'error', ...values: TaskError<I, O>[]): void;
 }
 
 export function isTaskQueueHook<I, O>(
@@ -22,5 +27,6 @@ export function isTaskQueueHook<I, O>(
   if (!Array.isArray(candidate.error)) return false;
   if (typeof candidate.push !== 'function') return false;
   if (typeof candidate.kill !== 'function') return false;
+  if (typeof candidate.flush !== 'function') return false;
   return true;
 }
