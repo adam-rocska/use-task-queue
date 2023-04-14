@@ -10,8 +10,6 @@ export interface TaskQueueHook<I, O> {
   push(input: I | I[]): void;
   kill(process: TaskProcess<I, O>): void;
   flush(target: 'all'): void;
-  flush(target: 'input', ...values: I[]): void;
-  flush(target: 'process', ...values: TaskProcess<I, O>[]): void;
   flush(target: 'output', ...values: TaskOutput<I, O>[]): void;
   flush(target: 'error', ...values: TaskError<I, O>[]): void;
 }

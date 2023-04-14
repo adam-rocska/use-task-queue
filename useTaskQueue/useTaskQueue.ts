@@ -85,26 +85,12 @@ export default function useTaskQueue<I, O>(
   };
 
   function flush(target: 'all'): void;
-  function flush(target: 'input', ...values: I[]): void;
-  function flush(target: 'process', ...values: TaskProcess<I, O>[]): void;
   function flush(target: 'output', ...values: TaskOutput<I, O>[]): void;
   function flush(target: 'error', ...values: TaskError<I, O>[]): void;
   function flush(target: any, ...items: any[]) {
     if (target === 'all') {
-      flushFrom(setInput, input);
-      flushFrom(setProcessing, processing);
       flushFrom(setOutput, output);
       flushFrom(setError, error);
-      return;
-    }
-    if (target === 'input') {
-      if (items.length > 0) flushFrom(setInput, input, items);
-      else flushFrom(setInput, input);
-      return;
-    }
-    if (target === 'process') {
-      if (items.length > 0) flushFrom(setProcessing, processing, items);
-      else flushFrom(setProcessing, processing);
       return;
     }
     if (target === 'output') {
