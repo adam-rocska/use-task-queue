@@ -102,6 +102,7 @@ export default function useTaskQueue<I, O>(
   }
 
   useEffect(() => {
+    // TODO: Bulk input processing instead of one-by-one.
     const popped = popFrom(setInput, input);
     if (!popped) return;
     const taskInput = popped as I;
