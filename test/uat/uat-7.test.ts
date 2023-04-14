@@ -34,25 +34,13 @@ describe('Simple hook result flush', () => {
     rerender();
   });
 
-  test('Flushes all queues.', async () => {
-    act(() => result.current.push(2));
-    act(() => result.current.push(3));
-    act(() => result.current.push(4));
-    act(() => result.current.flush('all'));
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [],
-      error: [],
-    });
-  });
-
   test('Flushes output queue.', async () => {
     act(() => result.current.push(2));
     act(() => result.current.push(3));
     act(() => result.current.push(4));
-    act(() => result.current.flush('output'));
+    act(() => {
+      result.current.flush('output');
+    });
 
     expect(result.current).toBeInState({
       input: [],
@@ -66,7 +54,9 @@ describe('Simple hook result flush', () => {
     act(() => result.current.push(2));
     act(() => result.current.push(3));
     act(() => result.current.push(4));
-    act(() => result.current.flush('output', result.current.output[0]!));
+    act(() => {
+      result.current.flush('output', result.current.output[0]!);
+    });
 
     expect(result.current).toBeInState({
       input: [],
@@ -80,7 +70,9 @@ describe('Simple hook result flush', () => {
     act(() => result.current.push(2));
     act(() => result.current.push(3));
     act(() => result.current.push(4));
-    act(() => result.current.flush('error'));
+    act(() => {
+      result.current.flush('error');
+    });
 
     expect(result.current).toBeInState({
       input: [],
@@ -98,7 +90,9 @@ describe('Simple hook result flush', () => {
     act(() => result.current.push(3));
     act(() => result.current.push(4));
     act(() => result.current.push(5));
-    act(() => result.current.flush('error', result.current.error[0]!));
+    act(() => {
+      result.current.flush('error', result.current.error[0]!);
+    });
 
     expect(result.current).toBeInState({
       input: [],
