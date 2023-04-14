@@ -144,7 +144,7 @@ export default function useTaskQueue<I, O>(
     } else {
       reduceResults(results);
     }
-  }, [getPostconditionFailure, input, name, task]);
+  }, [input]);
 
   useEffect(() => {
     if (!inputQueue) return;
