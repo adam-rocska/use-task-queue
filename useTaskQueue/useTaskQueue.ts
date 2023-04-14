@@ -78,6 +78,16 @@ export default function useTaskQueue<I, O>(
     [getPreconditionFailure]
   );
   const kill: TaskQueueHook<I, O>['kill'] = process => {
+    if (process === 'all') {
+      const cancellableProcesses: TaskProcess<I, O>[] = [];
+      for (const process of processing) {
+        if (!isPromiseWithCancel(process.task)) continue;
+        cancellableProcesses.push(process);
+        cancellableProcesses.push(process);
+      }
+      flushFrom(setProcessing, cancellableProcesses);
+      return;
+    }
     if (!processing.includes(process)) return;
     if (process.task instanceof Promise) return;
     removeFrom(setProcessing, process);

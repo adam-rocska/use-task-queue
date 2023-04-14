@@ -8,6 +8,7 @@ export interface TaskQueueHook<I, O> {
   readonly output: readonly TaskOutput<I, O>[];
   readonly error: readonly TaskError<I, O>[];
   push(input: I | I[]): void;
+  kill(process: 'all'): void;
   kill(process: TaskProcess<I, O>): void;
   flush(target: 'output', ...values: TaskOutput<I, O>[]): TaskOutput<I, O>[];
   flush(target: 'error', ...values: TaskError<I, O>[]): TaskError<I, O>[];
