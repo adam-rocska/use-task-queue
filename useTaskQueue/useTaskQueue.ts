@@ -111,7 +111,9 @@ export default function useTaskQueue<I, O>(
     try {
       results = task(taskInput);
     } catch (error) {
-      pushTo(setError, [new TaskError(name, 'Task failed.', taskInput, error)]);
+      pushTo(setError, [
+        new TaskError(name, 'Synchronous task failure.', taskInput, error),
+      ]);
       return;
     }
 
@@ -134,7 +136,7 @@ export default function useTaskQueue<I, O>(
       results
         .then(reduceResults, error =>
           pushTo(setError, [
-            new TaskError(name, 'Task failed.', taskInput, error),
+            new TaskError(name, 'Asynchronous task failure.', taskInput, error),
           ])
         )
         .then(() => removeFrom(setProcessing, process));
