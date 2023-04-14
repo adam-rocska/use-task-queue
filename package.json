@@ -27,7 +27,7 @@
     "build": "tsc && tsc-alias",
     "clean": "rm -rf lib docs coverage",
     "api-documentation": "typedoc",
-    "lint": "eslint next-rest"
+    "lint": "eslint useTaskQueue"
   },
   "author": {
     "name": "Adam Laszlo Rocska",
