@@ -59,3 +59,23 @@ For example, the test for bug 12345 should be enclosed in a
         });
     });
 ```
+
+** When a regression test contains mocks, stubs, assets,
+necessary preconditional units etc.**, they should be
+organized in a directory named as follows:
+```
+    <bug number>-<slugified-summary>
+```
+
+The tests in the directory should still respect the
+previously described rules.
+
+For example, the test for bug 12345 should be organized as
+follows:
+```
+    12345-foo/
+        12345-foo.test.ts
+        MyComponent.tsx
+        someMock.ts
+        someHeaders.d.ts
+```
