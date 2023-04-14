@@ -83,7 +83,7 @@ export default function useTaskQueue<I, O>(
       for (const process of processing) {
         if (!isPromiseWithCancel(process.task)) continue;
         cancellableProcesses.push(process);
-        cancellableProcesses.push(process);
+        process.task.cancel();
       }
       flushFrom(setProcessing, cancellableProcesses);
       return;
