@@ -91,24 +91,32 @@ export default function useTaskQueue<I, O>(
   function flush(target: 'error', ...values: TaskError<I, O>[]): void;
   function flush(target: any, ...items: any[]) {
     if (target === 'all') {
-      flushFrom(setInput);
-      flushFrom(setProcessing);
-      flushFrom(setOutput);
-      flushFrom(setError);
+      flushFrom(setInput, input);
+      flushFrom(setProcessing, processing);
+      flushFrom(setOutput, output);
+      flushFrom(setError, error);
       return;
     }
-    if (target === 'input')
-      if (items.length > 0) return flushFrom(setInput, items);
-      else return flushFrom(setInput);
-    if (target === 'process')
-      if (items.length > 0) return flushFrom(setProcessing, items);
-      else return flushFrom(setProcessing);
-    if (target === 'output')
-      if (items.length > 0) return flushFrom(setOutput, items);
-      else return flushFrom(setOutput);
-    if (target === 'error')
-      if (items.length > 0) return flushFrom(setError, items);
-      else return flushFrom(setError);
+    if (target === 'input') {
+      if (items.length > 0) flushFrom(setInput, input, items);
+      else flushFrom(setInput, input);
+      return;
+    }
+    if (target === 'process') {
+      if (items.length > 0) flushFrom(setProcessing, processing, items);
+      else flushFrom(setProcessing, processing);
+      return;
+    }
+    if (target === 'output') {
+      if (items.length > 0) flushFrom(setOutput, output, items);
+      else flushFrom(setOutput, output);
+      return;
+    }
+    if (target === 'error') {
+      if (items.length > 0) flushFrom(setError, error, items);
+      else flushFrom(setError, error);
+      return;
+    }
   }
 
   useEffect(() => {
