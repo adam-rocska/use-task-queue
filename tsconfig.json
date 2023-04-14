@@ -21,10 +21,14 @@
       ],
       "!*": [
         "./test/*"
-      ]
+      ],
+      "@21gram-consulting/use-task-queue": [
+        "./useTaskQueue/index.ts"
+      ],
     },
     "resolveJsonModule": true,
     "allowJs": false,
+    "jsx": "react-jsxdev",
     "declaration": true,
     "outDir": "./lib/",
     "removeComments": true,
@@ -49,8 +53,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "useTaskQueue/**/*.ts",
-    "test/unit/popFrom.test.ts"
+    "useTaskQueue/**/*.ts"
   ],
   "exclude": [
     "node_modules",

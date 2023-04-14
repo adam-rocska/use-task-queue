@@ -30,14 +30,14 @@ of the bug.
 For example, the test for bug 12345 should be enclosed in a
 `describe` block as follows:
 ```ts
-    describe('Foo causes a stack overflow during full moons.', () => {
+    describe('Foo causes a stack overflow during full moons:', () => {
         // test code
     });
 ```
 
 Or a specific example:
 ```ts
-    describe('Hook reevaluation due to task recreation', () => {
+    describe('Hook reevaluation due to task recreation:', () => {
         // test code
     });
 ```
@@ -53,7 +53,7 @@ scenarios.
 For example, the test for bug 12345 should be enclosed in a
 `describe` block as follows:
 ```ts
-    describe('Foo causes a stack overflow during full moons.', () => {
+    describe('Foo causes a stack overflow during full moons:', () => {
         test('Foo causes a stack overflow during full moons.', () => {
             // test code
         });
