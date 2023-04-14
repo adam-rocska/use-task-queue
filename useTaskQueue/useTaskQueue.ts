@@ -84,25 +84,21 @@ export default function useTaskQueue<I, O>(
     process.task.cancel();
   };
 
-  function flush(target: 'all'): void;
-  function flush(target: 'output', ...values: TaskOutput<I, O>[]): void;
-  function flush(target: 'error', ...values: TaskError<I, O>[]): void;
-  function flush(target: any, ...items: any[]) {
-    if (target === 'all') {
-      flushFrom(setOutput, output);
-      flushFrom(setError, error);
-      return;
-    }
-    if (target === 'output') {
-      if (items.length > 0) flushFrom(setOutput, output, items);
-      else flushFrom(setOutput, output);
-      return;
-    }
-    if (target === 'error') {
-      if (items.length > 0) flushFrom(setError, error, items);
-      else flushFrom(setError, error);
-      return;
-    }
+  function flush(q: 'output', ...v: TaskOutput<I, O>[]): TaskOutput<I, O>[];
+  function flush(q: 'error', ...v: TaskError<I, O>[]): TaskError<I, O>[];
+  function flush(q: any, ...v: any[]): any[] {
+    if (q === 'output')
+      return v.length > 0
+        ? flushFrom(setOutput, output, v)
+        : flushFrom(setOutput, output);
+    if (q === 'error')
+      return v.length > 0
+        ? flushFrom(setError, error, v)
+        : flushFrom(setError, error);
+    throw new TaskError(
+      name,
+      'Unreachable code hit. Use typescript or read the docs amigo.'
+    );
   }
 
   useEffect(() => {
@@ -149,8 +145,7 @@ export default function useTaskQueue<I, O>(
 
   useEffect(() => {
     if (!inputQueue) return;
-    push(inputQueue.output.map(o => o.output));
-    inputQueue.flush('output');
+    push(inputQueue.flush('output').map(o => o.output));
   }, [inputQueue, push]);
 
   return {input, process: processing, output, error, push, kill, flush};

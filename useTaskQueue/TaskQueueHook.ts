@@ -9,9 +9,8 @@ export interface TaskQueueHook<I, O> {
   readonly error: readonly TaskError<I, O>[];
   push(input: I | I[]): void;
   kill(process: TaskProcess<I, O>): void;
-  flush(target: 'all'): void;
-  flush(target: 'output', ...values: TaskOutput<I, O>[]): void;
-  flush(target: 'error', ...values: TaskError<I, O>[]): void;
+  flush(target: 'output', ...values: TaskOutput<I, O>[]): TaskOutput<I, O>[];
+  flush(target: 'error', ...values: TaskError<I, O>[]): TaskError<I, O>[];
 }
 
 export function isTaskQueueHook<I, O>(
