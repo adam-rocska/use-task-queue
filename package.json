@@ -13,7 +13,7 @@
     "sync",
     "task-queue",
     "promise",
-    "cancellable",
+    "cancellable"
   ],
   "main": "lib/useTaskQueue/index.js",
   "types": "lib/useTaskQueue/index.d.ts",
