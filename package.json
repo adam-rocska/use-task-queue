@@ -94,6 +94,10 @@
       "^!(.*)$": "<rootDir>/test/$1",
       "^@21gram-consulting/use-task-queue": "<rootDir>/useTaskQueue/index.ts"
     },
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/test/.*?/"
+    ],
     "coverageThreshold": {
       "global": {
         "branches": 100,
