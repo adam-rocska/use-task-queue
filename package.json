@@ -1,9 +1,19 @@
 {
   "name": "@21gram-consulting/use-task-queue",
-  "version": "1.0.0",
-  "description": "TBD",
+  "version": "0.1.0",
+  "description": "21Gram Consulting's React hook for managing queues of tasks.",
   "keywords": [
-    "TBD"
+    "queue",
+    "task",
+    "react",
+    "hook",
+    "react-hook",
+    "react-hooks",
+    "async",
+    "sync",
+    "task-queue",
+    "promise",
+    "cancellable",
   ],
   "main": "lib/useTaskQueue/index.js",
   "types": "lib/useTaskQueue/index.d.ts",
