@@ -6,14 +6,14 @@
     "noFallthroughCasesInSwitch": true,
     "pretty": true,
     "sourceMap": true,
-    "target": "ESNext",
+    "target": "ES2021",
     "lib": [
       "ES2021",
       "DOM"
     ],
     "rootDir": ".",
-    "module": "ESNext",
-    "moduleResolution": "nodenext",
+    "module": "CommonJS",
+    "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
       "#*": [
