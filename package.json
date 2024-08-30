@@ -1,5 +1,5 @@
 {
-  "name": "@21gram-consulting/use-task-queue",
+  "name": "@adam-rocska/use-task-queue",
   "version": "0.1.1",
   "description": "21Gram Consulting's React hook for managing queues of tasks.",
   "keywords": [
