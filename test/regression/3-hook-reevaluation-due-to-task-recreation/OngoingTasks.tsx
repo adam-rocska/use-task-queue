@@ -1,6 +1,6 @@
 import {useReproContext} from './ReproContext';
 import {FunctionComponent} from 'react';
-import {TaskQueueHook} from '@21gram-consulting/use-task-queue';
+import {TaskQueueHook} from '@adam-rocska/use-task-queue';
 import Task1 from './Task1';
 import Task2 from './Task2';
 import Task3 from './Task3';

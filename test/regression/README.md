@@ -6,17 +6,20 @@ that the given bug report is fixed for good.
 ## Naming Convention
 
 The test file names should be named as follows:
+
 ```
     <bug number>-<short description>.<extension>
 ```
 
 For example, the test for bug 12345 should be named as follows:
+
 ```
     12345-foo.test.ts
 ```
 
 For a specific example, the test for the bug
-[Hook Reevaluation due to task recreation](https://github.com/21GramConsulting/useTaskQueue/issues/3) is expected to be:
+[Hook Reevaluation due to task recreation](https://github.com/adam-rocska/useTaskQueue/issues/3) is expected to be:
+
 ```
     3-hook-reevaluation.test.ts
 ```
@@ -29,6 +32,7 @@ of the bug.
 
 For example, the test for bug 12345 should be enclosed in a
 `describe` block as follows:
+
 ```ts
     describe('Foo causes a stack overflow during full moons:', () => {
         // test code
@@ -36,6 +40,7 @@ For example, the test for bug 12345 should be enclosed in a
 ```
 
 Or a specific example:
+
 ```ts
     describe('Hook reevaluation due to task recreation:', () => {
         // test code
@@ -52,6 +57,7 @@ scenarios.
 
 For example, the test for bug 12345 should be enclosed in a
 `describe` block as follows:
+
 ```ts
     describe('Foo causes a stack overflow during full moons:', () => {
         test('Foo causes a stack overflow during full moons.', () => {
@@ -60,9 +66,10 @@ For example, the test for bug 12345 should be enclosed in a
     });
 ```
 
-** When a regression test contains mocks, stubs, assets,
+**When a regression test contains mocks, stubs, assets,
 necessary preconditional units etc.**, they should be
 organized in a directory named as follows:
+
 ```
     <bug number>-<slugified-summary>
 ```
@@ -72,6 +79,7 @@ previously described rules.
 
 For example, the test for bug 12345 should be organized as
 follows:
+
 ```
     12345-foo/
         12345-foo.test.ts

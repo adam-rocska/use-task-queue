@@ -5,9 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@21gram-consulting/ts-codec':
+  '@adam-rocska/ts-codec':
     specifier: ^1.2.0
-    version: 1.2.0
+    version: 1.2.2
   real-cancellable-promise:
     specifier: ^1.2.0
     version: 1.2.0
@@ -61,6 +61,9 @@ devDependencies:
   jest-environment-jsdom:
     specifier: ^29.7.0
     version: 29.7.0
+  pnpm:
+    specifier: ^9.9.0
+    version: 9.9.0
   react:
     specifier: 17.0.2
     version: 17.0.2
@@ -79,10 +82,8 @@ devDependencies:
 
 packages:
 
-  /@21gram-consulting/ts-codec@1.2.0:
-    resolution: {integrity: sha512-mlO/UAKZB4C8NG2hmAU2QNRJDcZdrMkUt+1NwMGKo+qYpjWJ3QMfmRs6C0O3J7NKS6wlPxbMuCQPngUIqEX3vw==}
-    engines: {node: '>=14'}
-    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+  /@adam-rocska/ts-codec@1.2.2:
+    resolution: {integrity: sha512-3PTlJQ2vPXcJCCTNR7bgphXglGQJnYrPV0YBae7J1YGzJ0EGLpy0CeC386JC1l6GGsTegr1nzCOl7y3lmB233Q==}
     dev: false
 
   /@adobe/css-tools@4.4.0:
@@ -3926,6 +3927,12 @@ packages:
     engines: {node: '>=12'}
     dependencies:
       queue-lit: 1.5.2
+    dev: true
+
+  /pnpm@9.9.0:
+    resolution: {integrity: sha512-YMGKzROL/2ldM5vmrRP36TbupnRWYNTMSndtUkfFQNDt7hpWNpXBg6ZuuRfviPK0/rH8JfMqetytx6rzQ46ZwQ==}
+    engines: {node: '>=18.12'}
+    hasBin: true
     dev: true
 
   /possible-typed-array-names@1.0.0:

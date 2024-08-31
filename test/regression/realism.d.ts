@@ -1,4 +1,4 @@
-declare module '@21gram-consulting/use-task-queue' {
+declare module '@adam-rocska/use-task-queue' {
   import * as lib from '#index';
   export = typeof lib;
 }

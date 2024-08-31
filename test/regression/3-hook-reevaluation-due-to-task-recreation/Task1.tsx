@@ -1,5 +1,5 @@
 import {FunctionComponent} from 'react';
-import {TaskProcess} from '@21gram-consulting/use-task-queue';
+import {TaskProcess} from '@adam-rocska/use-task-queue';
 import {useReproContext} from './ReproContext';
 
 const Task1: FunctionComponent = function Task1() {

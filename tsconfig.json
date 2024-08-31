@@ -22,7 +22,7 @@
       "!*": [
         "./test/*"
       ],
-      "@21gram-consulting/use-task-queue": [
+      "@adam-rocska/use-task-queue": [
         "./useTaskQueue/index.ts"
       ],
     },

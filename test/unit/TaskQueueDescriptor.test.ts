@@ -1,6 +1,6 @@
 import buildStubRecords from '!buildStubRecords';
 import {TaskQueueDescriptor, isTaskQueueDescriptor} from '#TaskQueueDescriptor';
-import {json} from '@21gram-consulting/ts-codec';
+import {json} from '@adam-rocska/ts-codec';
 import {nullTaskQueue} from '#nullTaskQueue';
 
 describe('TaskQueueDescriptor', () => {

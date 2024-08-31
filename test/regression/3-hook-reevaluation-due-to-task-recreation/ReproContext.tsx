@@ -4,7 +4,7 @@ import {
   createContext,
   useContext,
 } from 'react';
-import {nullTaskQueue, TaskQueueHook} from '@21gram-consulting/use-task-queue';
+import {nullTaskQueue, TaskQueueHook} from '@adam-rocska/use-task-queue';
 import useTask1 from './useTask1';
 import useTask2 from './useTask2';
 import useTask3 from './useTask3';

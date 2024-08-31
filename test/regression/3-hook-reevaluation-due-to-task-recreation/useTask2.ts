@@ -1,5 +1,5 @@
-import {TaskQueueHook, useTaskQueue} from '@21gram-consulting/use-task-queue';
-import {json} from '@21gram-consulting/ts-codec';
+import {TaskQueueHook, useTaskQueue} from '@adam-rocska/use-task-queue';
+import {json} from '@adam-rocska/ts-codec';
 
 export default function useTask2(
   input: TaskQueueHook<any, number>

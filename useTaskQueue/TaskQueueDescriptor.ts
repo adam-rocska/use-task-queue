@@ -1,4 +1,4 @@
-import {Codec, isCodec} from '@21gram-consulting/ts-codec';
+import {Codec, isCodec} from '@adam-rocska/ts-codec';
 import {TaskQueueHook, isTaskQueueHook} from './TaskQueueHook';
 import Task from './Task';
 

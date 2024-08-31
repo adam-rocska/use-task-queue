@@ -1,7 +1,7 @@
 import {act, renderHook} from '@testing-library/react-hooks';
 import useTaskQueue from '#useTaskQueue';
 import {descriptors} from '#consistencyGuard';
-import {json} from '@21gram-consulting/ts-codec';
+import {json} from '@adam-rocska/ts-codec';
 import {CancellablePromise} from 'real-cancellable-promise';
 
 beforeEach(() => {

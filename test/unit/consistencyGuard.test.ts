@@ -1,7 +1,7 @@
 // import InconsistencyError from '#InconsistencyError';
 import {TaskQueueDescriptor} from '#TaskQueueDescriptor';
 import {consistencyGuard, descriptors} from '#consistencyGuard';
-import {json} from '@21gram-consulting/ts-codec';
+import {json} from '@adam-rocska/ts-codec';
 
 describe('consistencyGuard', () => {
   const originalConsole = global.console;
