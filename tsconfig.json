@@ -60,19 +60,5 @@
     "lib",
     "docs",
     "coverage"
-  ],
-  "typedocOptions": {
-    "name": "Reactive Task Queue for React",
-    "includeVersion": true,
-    "entryPoints": "./useTaskQueue/index.ts",
-    "entryPointStrategy": "Expand",
-    "out": "docs",
-    "disableSources": true,
-    "readme": "./useTaskQueue/SUMMARY.md",
-    "searchInComments": true,
-    "navigationLinks": {
-      "21Gram Consulting": "https://www.21gram.consulting",
-      "GitHub": "https://github.com/21GramConsulting/useTaskQueue",
-    }
-  }
+  ]
 }
