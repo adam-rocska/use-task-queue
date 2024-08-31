@@ -9,7 +9,7 @@ import {TaskQueueDescriptor} from './TaskQueueDescriptor';
 import {consistencyGuard} from './consistencyGuard';
 import {TaskProcess} from './TaskProcess';
 import {isPromiseWithCancel} from 'real-cancellable-promise';
-import flushFrom from '#flushFrom';
+import flushFrom from './flushFrom';
 
 export default function useTaskQueue<I, O>(
   descriptor: TaskQueueDescriptor<I, O>

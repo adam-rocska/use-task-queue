@@ -1,64 +1,12 @@
 {
+  "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
-    "pretty": true,
-    "sourceMap": true,
-    "target": "ES2021",
-    "lib": [
-      "ES2021",
-      "DOM"
-    ],
-    "rootDir": ".",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "#*": [
-        "./useTaskQueue/*"
-      ],
-      "!*": [
-        "./test/*"
-      ],
-      "@adam-rocska/use-task-queue": [
-        "./useTaskQueue/index.ts"
-      ],
-    },
-    "resolveJsonModule": true,
-    "allowJs": false,
-    "jsx": "react-jsxdev",
-    "declaration": true,
-    "outDir": "./lib/",
-    "removeComments": true,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "strictNullChecks": true,
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "bundler",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "strictBindCallApply": true,
-    "strictPropertyInitialization": true,
-    "noImplicitThis": true,
-    "useUnknownInCatchVariables": true,
-    "alwaysStrict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "exactOptionalPropertyTypes": true,
-    "noImplicitReturns": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "skipLibCheck": true
-  },
-  "include": [
-    "useTaskQueue/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "lib",
-    "docs",
-    "coverage"
-  ]
+    "checkJs": true
+  }
 }

@@ -1,7 +1,15 @@
 {
   "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ESNext",
+    "baseUrl": "..",
+    "paths": {
+      "@adam-rocska/use-task-queue": [ "./src/index.ts" ],
+      "!*": [ "./*" ],
+    }
+  },
   "include": [
-    "./**/*.ts",
-    "./**/*.tsx"
-  ],
+    "./**/*.test.ts"
+  ]
 }
