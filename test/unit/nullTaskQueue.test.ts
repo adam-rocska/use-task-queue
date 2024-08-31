@@ -1,5 +1,5 @@
-import {isNullTaskQueue, nullTaskQueue} from '#nullTaskQueue';
-import {isTaskQueueHook} from '#TaskQueueHook';
+import {isNullTaskQueue, nullTaskQueue} from '!src/nullTaskQueue';
+import {isTaskQueueHook} from '!src/TaskQueueHook';
 
 describe('nullTaskQueue', () => {
   describe('.nullTaskQueue()', () => {

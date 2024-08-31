@@ -1,5 +1,5 @@
 import buildStubRecords from '!buildStubRecords';
-import {isTaskProcess} from '#TaskProcess';
+import {isTaskProcess} from '!src/TaskProcess';
 import {pseudoCancellable} from 'real-cancellable-promise';
 
 describe('TaskProcess', () => {

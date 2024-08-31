@@ -1,9 +1,9 @@
 import {act, renderHook} from '@testing-library/react-hooks';
-import useTaskQueue from '#useTaskQueue';
-import {descriptors} from '#consistencyGuard';
+import useTaskQueue from '!src/useTaskQueue';
+import {descriptors} from '!src/consistencyGuard';
 import {json} from '@adam-rocska/ts-codec';
-import {TaskQueueHook} from '#TaskQueueHook';
-import TaskError from '#TaskError';
+import {TaskQueueHook} from '!src/TaskQueueHook';
+import TaskError from '!src/TaskError';
 
 beforeEach(() => {
   descriptors.clear();

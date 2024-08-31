@@ -1,6 +1,6 @@
-// import InconsistencyError from '#InconsistencyError';
-import {TaskQueueDescriptor} from '#TaskQueueDescriptor';
-import {consistencyGuard, descriptors} from '#consistencyGuard';
+// import InconsistencyError from '!src/InconsistencyError';
+import {TaskQueueDescriptor} from '!src/TaskQueueDescriptor';
+import {consistencyGuard, descriptors} from '!src/consistencyGuard';
 import {json} from '@adam-rocska/ts-codec';
 
 describe('consistencyGuard', () => {

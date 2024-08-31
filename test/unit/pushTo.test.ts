@@ -1,4 +1,4 @@
-import pushTo from '#pushTo';
+import pushTo from '!src/pushTo';
 
 describe('pushTo', () => {
   it('short exits if the value is empty', () => {

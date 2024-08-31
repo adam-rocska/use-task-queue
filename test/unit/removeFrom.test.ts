@@ -1,4 +1,4 @@
-import removeFrom from '#removeFrom';
+import removeFrom from '!src/removeFrom';
 
 describe('removeFrom', () => {
   it('should should resolve unaltered if item to remove is not present.', () => {

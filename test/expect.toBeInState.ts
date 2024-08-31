@@ -1,7 +1,7 @@
-import TaskError from '#TaskError';
-import {TaskOutput} from '#TaskOutput';
-import {TaskProcess} from '#TaskProcess';
-import {TaskQueueHook} from '#TaskQueueHook';
+import TaskError from '!src/TaskError';
+import {TaskOutput} from '!src/TaskOutput';
+import {TaskProcess} from '!src/TaskProcess';
+import {TaskQueueHook} from '!src/TaskQueueHook';
 // eslint-disable-next-line node/no-extraneous-import
 import type {SyncExpectationResult} from 'expect';
 

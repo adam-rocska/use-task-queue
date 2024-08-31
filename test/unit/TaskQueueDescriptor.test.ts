@@ -1,7 +1,7 @@
 import buildStubRecords from '!buildStubRecords';
-import {TaskQueueDescriptor, isTaskQueueDescriptor} from '#TaskQueueDescriptor';
+import {TaskQueueDescriptor, isTaskQueueDescriptor} from '!src/TaskQueueDescriptor';
 import {json} from '@adam-rocska/ts-codec';
-import {nullTaskQueue} from '#nullTaskQueue';
+import {nullTaskQueue} from '!src/nullTaskQueue';
 
 describe('TaskQueueDescriptor', () => {
   describe('.TaskQueueDescriptor()', () => {

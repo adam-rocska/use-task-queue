@@ -1,6 +1,6 @@
 import buildStubRecords from '!buildStubRecords';
-import {isTaskQueueHook} from '#TaskQueueHook';
-import {nullTaskQueue} from '#nullTaskQueue';
+import {isTaskQueueHook} from '!src/TaskQueueHook';
+import {nullTaskQueue} from '!src/nullTaskQueue';
 
 describe('TaskQueueHook', () => {
   describe('.isTaskQueueHook()', () => {

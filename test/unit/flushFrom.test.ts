@@ -1,4 +1,4 @@
-import flushFrom from '#flushFrom';
+import flushFrom from '!src/flushFrom';
 
 describe('flushFrom', () => {
   let setStateDispatch = jest.fn();

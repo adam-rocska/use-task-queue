@@ -1,6 +1,6 @@
 import {act, renderHook} from '@testing-library/react-hooks';
-import useTaskQueue from '#useTaskQueue';
-import {descriptors} from '#consistencyGuard';
+import useTaskQueue from '!src/useTaskQueue';
+import {descriptors} from '!src/consistencyGuard';
 import {json} from '@adam-rocska/ts-codec';
 import {CancellablePromise} from 'real-cancellable-promise';
 
