@@ -1,6 +1,6 @@
 {
   "name": "@adam-rocska/use-task-queue",
-  "version": "1.0.0",
+  "version": "0.1.2",
   "description": "React hook for managing queues of tasks.",
   "keywords": [
     "queue",
