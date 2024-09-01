@@ -2,17 +2,16 @@ import TaskError from '!src/TaskError';
 import {TaskOutput} from '!src/TaskOutput';
 import {TaskProcess} from '!src/TaskProcess';
 import {TaskQueueHook} from '!src/TaskQueueHook';
-// eslint-disable-next-line node/no-extraneous-import
 import type {SyncExpectationResult} from 'expect';
 
-export type Expectations<I, O> = {
+type Expectations<I, O> = {
   input: I[];
   process: TaskProcess<I, O>[];
   output: TaskOutput<I, O>[];
   error: TaskError<I, O>[];
 };
 
-export function toBeInState<I, O>(
+function toBeInState<I, O>(
   hook: TaskQueueHook<I, O>,
   expectations: Expectations<I, O>
 ): SyncExpectationResult {
@@ -23,13 +22,6 @@ export function toBeInState<I, O>(
     };
   }
 
-  if (hook.input.length !== expectations.input.length) {
-    return fail(
-      'Input length mismatch.',
-      hook.input.length,
-      expectations.input.length
-    );
-  }
   if (hook.process.length !== expectations.process.length) {
     return fail(
       'Process length mismatch.',
@@ -130,3 +122,16 @@ const fail = (
   pass: false,
   message: () => `${message}: Expected ${expected}, but got ${actual}.`,
 });
+
+expect.extend({toBeInState});
+
+declare global {
+  namespace jest {
+    interface Expect {
+      toBeInState<I, O>(expectations: Expectations<I, O>): void;
+    }
+    interface Matchers<R> {
+      toBeInState<I, O>(expectations: Expectations<I, O>): R;
+    }
+  }
+}

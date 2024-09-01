@@ -1,4 +1,4 @@
-import buildStubRecords from '!buildStubRecords';
+import buildStubRecords from '!test/buildStubRecords';
 import {isTaskQueueHook} from '!src/TaskQueueHook';
 import {nullTaskQueue} from '!src/nullTaskQueue';
 

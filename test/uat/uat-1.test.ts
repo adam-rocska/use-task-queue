@@ -1,4 +1,7 @@
-import {renderHook} from '@testing-library/react-hooks';
+/**
+ * @jest-environment jsdom
+ */
+import {renderHook} from '@testing-library/react';
 import useTaskQueue from '!src/useTaskQueue';
 import {descriptors} from '!src/consistencyGuard';
 import {json} from '@adam-rocska/ts-codec';

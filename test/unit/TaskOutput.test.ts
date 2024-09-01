@@ -1,4 +1,4 @@
-import buildStubRecords from '!buildStubRecords';
+import buildStubRecords from '!test/buildStubRecords';
 import {isTaskOutput} from '!src/TaskOutput';
 
 describe('TaskProcess', () => {

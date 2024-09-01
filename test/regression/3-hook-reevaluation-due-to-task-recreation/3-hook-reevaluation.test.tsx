@@ -1,8 +1,8 @@
 /**
  * @jest-environment jsdom
  */
-import {descriptors} from '#consistencyGuard';
-import {render, screen} from '@testing-library/react';
+import {descriptors} from '!src/consistencyGuard';
+import {screen, render} from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ReproApp from './ReproApp';
 import userEvent from '@testing-library/user-event';

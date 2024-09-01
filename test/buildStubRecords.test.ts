@@ -1,4 +1,4 @@
-import buildStubRecords from '!buildStubRecords';
+import buildStubRecords from '!test/buildStubRecords';
 
 describe('buildStubRecords()', () => {
   it('should return an empty array', () => {
