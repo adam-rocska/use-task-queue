@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import {act, renderHook} from '@testing-library/react';
+import {act, renderHook, waitFor} from '@testing-library/react';
 import useTaskQueue from '!src/useTaskQueue';
 import {descriptors} from '!src/consistencyGuard';
 import {json} from '@adam-rocska/ts-codec';
@@ -67,7 +67,7 @@ describe('Simple hook postcondition failure', () => {
   });
 
   test('Produces a simple postcondition failure for a asynchronous task.', async () => {
-    const {result, rerender, waitForNextUpdate} = renderHook(() =>
+    const {result, rerender} = renderHook(() =>
       useTaskQueue({
         name: 'test',
         codec: json.number,
@@ -78,19 +78,19 @@ describe('Simple hook postcondition failure', () => {
 
     rerender();
     act(() => result.current.push(2));
-    await waitForNextUpdate();
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [],
-      error: [new TaskError('test', 'Postcondition failed.', 2, undefined, 4)],
+    await waitFor(() => {
+      expect(result.current).toBeInState({
+        input: [],
+        process: [],
+        output: [],
+        error: [new TaskError('test', 'Postcondition failed.', 2, undefined, 4)],
+      });
     });
   });
 
   test('Produces a reasoned postcondition failure for a asynchronous task.', async () => {
     const error = new Error('test');
-    const {result, rerender, waitForNextUpdate} = renderHook(() =>
+    const {result, rerender} = renderHook(() =>
       useTaskQueue({
         name: 'test',
         codec: json.number,
@@ -103,18 +103,18 @@ describe('Simple hook postcondition failure', () => {
 
     rerender();
     act(() => result.current.push(2));
-    await waitForNextUpdate();
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [],
-      error: [new TaskError('test', 'Postcondition failed.', 2, error, 4)],
+    await waitFor(() => {
+      expect(result.current).toBeInState({
+        input: [],
+        process: [],
+        output: [],
+        error: [new TaskError('test', 'Postcondition failed.', 2, error, 4)],
+      });
     });
   });
 
   test('Produces a simple postcondition failure for a cancellable asynchronous task.', async () => {
-    const {result, rerender, waitForNextUpdate} = renderHook(() =>
+    const {result, rerender} = renderHook(() =>
       useTaskQueue({
         name: 'test',
         codec: json.number,
@@ -125,19 +125,19 @@ describe('Simple hook postcondition failure', () => {
 
     rerender();
     act(() => result.current.push(2));
-    await waitForNextUpdate();
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [],
-      error: [new TaskError('test', 'Postcondition failed.', 2, undefined, 4)],
+    await waitFor(() => {
+      expect(result.current).toBeInState({
+        input: [],
+        process: [],
+        output: [],
+        error: [new TaskError('test', 'Postcondition failed.', 2, undefined, 4)],
+      });
     });
   });
 
   test('Produces a reasoned postcondition failure for a cancellable asynchronous task.', async () => {
     const error = new Error('test');
-    const {result, rerender, waitForNextUpdate} = renderHook(() =>
+    const {result, rerender} = renderHook(() =>
       useTaskQueue({
         name: 'test',
         codec: json.number,
@@ -150,13 +150,13 @@ describe('Simple hook postcondition failure', () => {
 
     rerender();
     act(() => result.current.push(2));
-    await waitForNextUpdate();
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [],
-      error: [new TaskError('test', 'Postcondition failed.', 2, error, 4)],
+    await waitFor(() => {
+      expect(result.current).toBeInState({
+        input: [],
+        process: [],
+        output: [],
+        error: [new TaskError('test', 'Postcondition failed.', 2, error, 4)],
+      });
     });
   });
 });

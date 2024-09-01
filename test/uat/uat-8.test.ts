@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import {act, renderHook} from '@testing-library/react';
+import {act, renderHook, waitFor} from '@testing-library/react';
 import useTaskQueue from '!src/useTaskQueue';
 import {descriptors} from '!src/consistencyGuard';
 import {json} from '@adam-rocska/ts-codec';
@@ -77,17 +77,18 @@ describe('Simple task piping.', () => {
       error: [],
     });
     resolveSecond([1, 2, 3, 4]);
-    await second.waitForNextUpdate();
-    expect(second.result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [
-        {input: 4, output: 1},
-        {input: 4, output: 2},
-        {input: 4, output: 3},
-        {input: 4, output: 4},
-      ],
-      error: [],
+    await waitFor(() => {
+      expect(second.result.current).toBeInState({
+        input: [],
+        process: [],
+        output: [
+          {input: 4, output: 1},
+          {input: 4, output: 2},
+          {input: 4, output: 3},
+          {input: 4, output: 4},
+        ],
+        error: [],
+      });
     });
 
     expect(third.result.current).toBeInState({

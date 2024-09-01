@@ -44,7 +44,7 @@ describe('Simple hook task execution, with multiple outputs', () => {
   test('Enqueues and keeps track of an asynchronous task.', async () => {
     let resolve: (value: number[]) => void;
     const promise = new Promise<number[]>(r => (resolve = r));
-    const {result, rerender, waitForNextUpdate} = renderHook(() =>
+    const {result, rerender} = renderHook(() =>
       useTaskQueue({
         name: 'test',
         codec: json.number,
@@ -66,17 +66,17 @@ describe('Simple hook task execution, with multiple outputs', () => {
     });
 
     resolve!([111, 222, 333]);
-    await waitForNextUpdate();
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [
-        {input: 2, output: 111},
-        {input: 2, output: 222},
-        {input: 2, output: 333},
-      ],
-      error: [],
+    await waitFor(() => {
+      expect(result.current).toBeInState({
+        input: [],
+        process: [],
+        output: [
+          {input: 2, output: 111},
+          {input: 2, output: 222},
+          {input: 2, output: 333},
+        ],
+        error: [],
+      });
     });
   });
 
@@ -86,7 +86,7 @@ describe('Simple hook task execution, with multiple outputs', () => {
       new Promise<number[]>(r => (resolve = r)),
       console.error
     );
-    const {result, rerender, waitForNextUpdate} = renderHook(() =>
+    const {result, rerender} = renderHook(() =>
       useTaskQueue({
         name: 'test',
         codec: json.number,
@@ -108,17 +108,17 @@ describe('Simple hook task execution, with multiple outputs', () => {
     });
 
     resolve!([111, 222, 333]);
-    await waitForNextUpdate();
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [
-        {input: 2, output: 111},
-        {input: 2, output: 222},
-        {input: 2, output: 333},
-      ],
-      error: [],
+    await waitFor(() => {
+      expect(result.current).toBeInState({
+        input: [],
+        process: [],
+        output: [
+          {input: 2, output: 111},
+          {input: 2, output: 222},
+          {input: 2, output: 333},
+        ],
+        error: [],
+      });
     });
   });
 });

@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import {act, renderHook} from '@testing-library/react';
+import {act, renderHook, waitFor} from '@testing-library/react';
 import useTaskQueue from '!src/useTaskQueue';
 import {descriptors} from '!src/consistencyGuard';
 import {json} from '@adam-rocska/ts-codec';
@@ -40,7 +40,7 @@ describe('Simple hook task execution, with single output', () => {
   test('Enqueues and keeps track of an asynchronous task.', async () => {
     let resolve: (value: number[]) => void;
     const promise = new Promise<number[]>(r => (resolve = r));
-    const {result, rerender, waitForNextUpdate} = renderHook(() =>
+    const {result, rerender} = renderHook(() =>
       useTaskQueue({
         name: 'test',
         codec: json.number,
@@ -62,14 +62,15 @@ describe('Simple hook task execution, with single output', () => {
     });
 
     resolve!([555]);
-    await waitForNextUpdate();
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [{input: 2, output: 555}],
-      error: [],
+    await waitFor(() => {
+      expect(result.current).toBeInState({
+        input: [],
+        process: [],
+        output: [{input: 2, output: 555}],
+        error: [],
+      });
     });
+
   });
 
   test("Can't kill a non cancellable process.", async () => {
@@ -108,7 +109,7 @@ describe('Simple hook task execution, with single output', () => {
       new Promise<number[]>(r => (resolve = r)),
       console.error
     );
-    const {result, rerender, waitForNextUpdate} = renderHook(() =>
+    const {result, rerender} = renderHook(() =>
       useTaskQueue({
         name: 'test',
         codec: json.number,
@@ -130,14 +131,15 @@ describe('Simple hook task execution, with single output', () => {
     });
 
     resolve!([555]);
-    await waitForNextUpdate();
-
-    expect(result.current).toBeInState({
-      input: [],
-      process: [],
-      output: [{input: 2, output: 555}],
-      error: [],
+    await waitFor(() => {
+      expect(result.current).toBeInState({
+        input: [],
+        process: [],
+        output: [{input: 2, output: 555}],
+        error: [],
+      });
     });
+
   });
 
   test('Can kill a cancellable process.', async () => {
