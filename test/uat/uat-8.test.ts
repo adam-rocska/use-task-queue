@@ -15,7 +15,7 @@ afterEach(() => {
 });
 
 type RenderedHook = ReturnType<
-  typeof renderHook<void, TaskQueueHook<number, number>>
+  typeof renderHook<TaskQueueHook<number, number>, void>
 >;
 
 describe('Simple task piping.', () => {
