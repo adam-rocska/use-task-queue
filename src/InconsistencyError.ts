@@ -1,4 +1,4 @@
-import {TaskQueueDescriptor} from './TaskQueueDescriptor';
+import {TaskQueueDescriptor} from './task-queue-descriptor';
 
 export default class InconsistencyError extends Error {
   readonly knownDescriptor: TaskQueueDescriptor<any, any>;

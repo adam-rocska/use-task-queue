@@ -1,5 +1,5 @@
 // import InconsistencyError from '!src/InconsistencyError';
-import {TaskQueueDescriptor} from '!src/TaskQueueDescriptor';
+import {TaskQueueDescriptor} from '!src/task-queue-descriptor';
 import {consistencyGuard, descriptors} from '!src/consistencyGuard';
 import {json} from '@adam-rocska/ts-codec';
 

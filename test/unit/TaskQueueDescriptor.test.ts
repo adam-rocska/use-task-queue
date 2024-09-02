@@ -1,5 +1,5 @@
 import buildStubRecords from '!test/buildStubRecords';
-import {TaskQueueDescriptor, isTaskQueueDescriptor} from '!src/TaskQueueDescriptor';
+import {TaskQueueDescriptor, isTaskQueueDescriptor} from '!src/task-queue-descriptor';
 import {json} from '@adam-rocska/ts-codec';
 import {nullTaskQueue} from '!src/nullTaskQueue';
 

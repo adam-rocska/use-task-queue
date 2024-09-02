@@ -5,7 +5,7 @@ import pushTo from './pushTo';
 import TaskError from './TaskError';
 import {TaskQueueHook} from './TaskQueueHook';
 import {TaskOutput} from './TaskOutput';
-import {TaskQueueDescriptor} from './TaskQueueDescriptor';
+import {TaskQueueDescriptor} from './task-queue-descriptor';
 import {consistencyGuard} from './consistencyGuard';
 import {TaskProcess} from './TaskProcess';
 import {isPromiseWithCancel} from 'real-cancellable-promise';

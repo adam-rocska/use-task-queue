@@ -1,5 +1,5 @@
 // import InconsistencyError from './InconsistencyError';
-import {TaskQueueDescriptor} from './TaskQueueDescriptor';
+import {TaskQueueDescriptor} from './task-queue-descriptor';
 
 export const descriptors = new Set<TaskQueueDescriptor<any, any>>();
 
