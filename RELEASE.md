@@ -4,3 +4,5 @@
 
 - `isTaskQueueDescriptor` is now more flexible and also
   handles null object properly.
+- Dependency housekeeping
+- Updated README.md
