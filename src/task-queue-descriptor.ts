@@ -16,9 +16,10 @@ export const TaskQueueDescriptor = <I, O>(
 ) => descriptor;
 
 export const isTaskQueueDescriptor = (
-  value: object
-): value is TaskQueueDescriptor<unknown, unknown> => {
-  const candidate = value as TaskQueueDescriptor<unknown, unknown>;
+  candidate: any
+): candidate is TaskQueueDescriptor<unknown, unknown> => {
+  if (typeof candidate !== "object") return false;
+  if (candidate === null) return false;
   if (typeof candidate.name !== 'string') return false;
   if (!isCodec(candidate.codec)) return false;
   if (typeof candidate.task !== 'function') return false;

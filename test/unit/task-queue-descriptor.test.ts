@@ -16,6 +16,19 @@ describe('TaskQueueDescriptor', () => {
   });
 
   describe('.isTaskQueueDescriptor()', () => {
+    it.each([
+      [1],
+      [true],
+      [false],
+      [null],
+      [undefined],
+      [{}],
+      [[]],
+      [() => {}],
+    ])("should return false if the candidate is not a non-null object", candidate => {
+      expect(isTaskQueueDescriptor(candidate)).toBe(false);
+    });
+
     it('should return true if the value is a TaskQueueDescriptor', () => {
       buildStubRecords({
         name: ['test'],
