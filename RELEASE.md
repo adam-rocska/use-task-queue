@@ -1,4 +1,6 @@
-# 0.1.2
+# 0.1.3
 
-Post-migration release.
-No API changed from the 21G era.
+## Patch changes
+
+- `isTaskQueueDescriptor` is now more flexible and also
+  handles null object properly.
