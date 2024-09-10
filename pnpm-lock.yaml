@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@adam-rocska/ts-codec':
         specifier: ^1.2.2
-        version: 1.2.2
+        version: 1.2.3
       real-cancellable-promise:
         specifier: ^1.2.0
         version: 1.2.0
@@ -87,8 +87,8 @@ importers:
 
 packages:
 
-  '@adam-rocska/ts-codec@1.2.2':
-    resolution: {integrity: sha512-3PTlJQ2vPXcJCCTNR7bgphXglGQJnYrPV0YBae7J1YGzJ0EGLpy0CeC386JC1l6GGsTegr1nzCOl7y3lmB233Q==}
+  '@adam-rocska/ts-codec@1.2.3':
+    resolution: {integrity: sha512-ZbBSZy4l1YSfAk478G4jSPQoxiq07arMHh+XzDj0T8uINikjnlZJzVl42YVz3LvOwZkJ38seCgYC7IOdFw4tCA==}
 
   '@adobe/css-tools@4.4.0':
     resolution: {integrity: sha512-Ff9+ksdQQB3rMncgqDK78uLznstjyfIf2Arnh22pW8kBpLs6rpKDwgnZT46hin5Hl1WzazzK64DOrhSwYpS7bQ==}
@@ -3077,7 +3077,7 @@ packages:
 
 snapshots:
 
-  '@adam-rocska/ts-codec@1.2.2': {}
+  '@adam-rocska/ts-codec@1.2.3': {}
 
   '@adobe/css-tools@4.4.0': {}
 
