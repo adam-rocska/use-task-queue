@@ -13,7 +13,7 @@ importers:
         version: 1.2.3
       real-cancellable-promise:
         specifier: ^1.2.0
-        version: 1.2.0
+        version: 1.2.3
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: ^0.16.1
@@ -2595,8 +2595,8 @@ packages:
     resolution: {integrity: sha512-wS+hAgJShR0KhEvPJArfuPVN1+Hz1t0Y6n5jLrGQbkb4urgPE/0Rve+1kMB1v/oWgHgm4WIcV+i7F2pTVj+2iQ==}
     engines: {node: '>=0.10.0'}
 
-  real-cancellable-promise@1.2.0:
-    resolution: {integrity: sha512-FYhmx1FVSgoPRjneoTjh+EKZcNb8ijl/dyatTzase5eujYhVrLNDOiIY6AgQq7GU1kOoLgEd9jLVbhFg8k8dOQ==}
+  real-cancellable-promise@1.2.3:
+    resolution: {integrity: sha512-hBI5Gy/55VEeeMtImMgEirD7eq5UmqJf1J8dFZtbJZA/3rB0pYFZ7PayMGueb6v4UtUtpKpP+05L0VwyE1hI9Q==}
 
   redent@3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
@@ -6155,7 +6155,7 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  real-cancellable-promise@1.2.0: {}
+  real-cancellable-promise@1.2.3: {}
 
   redent@3.0.0:
     dependencies:
