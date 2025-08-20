@@ -68,7 +68,7 @@ importers:
         version: 29.7.0
       pnpm:
         specifier: ^10.2.1
-        version: 10.2.1
+        version: 10.15.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -2519,8 +2519,8 @@ packages:
     resolution: {integrity: sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==}
     engines: {node: '>=8'}
 
-  pnpm@10.2.1:
-    resolution: {integrity: sha512-OYA1x71pbQugsQpojtVYKFMp0n6plIBKUrrZFn2OOnK8uZP5aZWF08old5rGSUnvQidXpsMRAsEquTLly+XMkg==}
+  pnpm@10.15.0:
+    resolution: {integrity: sha512-SG68JZ0+mZpOhpHOA7XKxKccvso5Nyqbdiy1AM/fCHPiyxar49lRse4s8BJQPwJ7mLZYTk3yJSTgx0UNnseqew==}
     engines: {node: '>=18.12'}
     hasBin: true
 
@@ -6085,7 +6085,7 @@ snapshots:
     dependencies:
       find-up: 4.1.0
 
-  pnpm@10.2.1: {}
+  pnpm@10.15.0: {}
 
   possible-typed-array-names@1.0.0: {}
 
